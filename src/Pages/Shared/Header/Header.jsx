@@ -79,15 +79,6 @@ const Header = () => {
                   Contact Us
                 </Link>
 
-                {user?.email && (
-                  <Link
-                    to="/dashboard"
-                    className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
-                  >
-                    Dashboard
-                  </Link>
-                )}
-
                 <div className="flex justify-center lg:flex lg:mt-0 lg:-mx-2">
                   <div>
                     <div className="flex justify-center">

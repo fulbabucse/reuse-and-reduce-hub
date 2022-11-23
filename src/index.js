@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import "flowbite";
 import { Toaster } from "react-hot-toast";
 import AuthProvider from "./Contexts/AuthProvider";
+import "tw-elements";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
