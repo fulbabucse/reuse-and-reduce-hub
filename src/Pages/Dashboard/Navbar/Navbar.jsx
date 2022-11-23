@@ -7,7 +7,7 @@ import logo from "../../../assets/reuse-logo.jpg";
 import userThumb from "../../../assets/user_thumbnail.jpg";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
-const Header = () => {
+const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const { user, userSignOut } = useContext(AuthContext);
 
@@ -25,7 +25,7 @@ const Header = () => {
           <div className="lg:flex lg:items-center lg:justify-between w-full">
             <div className="flex items-center justify-between">
               <div>
-                <Link to="/">
+                <Link to="/dashboard">
                   <h1 className="flex items-center gap-1 text-xl lg:text-3xl font-bold text-gray-800">
                     <img className="10-4 h-10" src={logo} alt="" /> Reuse and
                     Reduce
@@ -59,34 +59,11 @@ const Header = () => {
                 </Link>
 
                 <Link
-                  to="/blog"
+                  to="/dashboard/users"
                   className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
                 >
-                  Blog
+                  Users
                 </Link>
-
-                <Link
-                  to="/about"
-                  className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
-                >
-                  About
-                </Link>
-
-                <Link
-                  to="/contact"
-                  className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
-                >
-                  Contact Us
-                </Link>
-
-                {user?.email && (
-                  <Link
-                    to="/dashboard"
-                    className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
-                  >
-                    Dashboard
-                  </Link>
-                )}
 
                 <div className="flex justify-center lg:flex lg:mt-0 lg:-mx-2">
                   <div>
@@ -164,4 +141,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;
