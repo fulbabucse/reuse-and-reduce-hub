@@ -118,8 +118,6 @@ const Header = () => {
                               >
                                 <button
                                   type="button"
-                                  data-mdb-ripple="true"
-                                  data-mdb-ripple-color="light"
                                   className="inline-block px-4 py-2 bg-purple-600 text-white font-medium text-md leading-tight rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0  w-full active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
                                 >
                                   Sign Up
@@ -137,11 +135,7 @@ const Header = () => {
                               </button>
                             ) : (
                               <Link to="/sign-in" className="w-full">
-                                <button
-                                  data-mdb-ripple="true"
-                                  data-mdb-ripple-color="light"
-                                  className="inline-block w-full px-4 py-2 bg-gradient-to-r from-primaryColor to-secondaryColor text-white font-medium text-md leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out"
-                                >
+                                <button className="inline-block w-full px-4 py-2 bg-gradient-to-r from-primaryColor to-secondaryColor text-white font-medium text-md leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out">
                                   Sign In
                                 </button>
                               </Link>
