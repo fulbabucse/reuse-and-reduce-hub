@@ -7,10 +7,13 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../../../Contexts/AuthProvider";
+import { useToken } from "../../../hooks/useToken";
 
 const SignIn = () => {
   const [error, setError] = useState("");
   const { signUser, googleSignIn } = useContext(AuthContext);
+  const [userEmail, setUserEmail] = useState("");
+  const [token] = useToken(userEmail);
   const {
     register,
     handleSubmit,
@@ -20,9 +23,15 @@ const SignIn = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
+  if (token) {
+    navigate(from, { replace: true });
+  }
+
   const handleUserSignIn = (data) => {
     signUser(data.email, data.password)
-      .then(() => {})
+      .then((result) => {
+        setUserEmail(result?.user?.email);
+      })
       .catch((err) => {
         if (err.message === "Firebase: Error (auth/user-not-found).") {
           setError("User not found");
@@ -33,7 +42,8 @@ const SignIn = () => {
   };
   const handleGoogleSignIn = () => {
     googleSignIn()
-      .then(() => {
+      .then((result) => {
+        setUserEmail(result?.user?.email);
         toast.success("Successfully Google Sign In");
       })
       .catch((err) => console.error(err));

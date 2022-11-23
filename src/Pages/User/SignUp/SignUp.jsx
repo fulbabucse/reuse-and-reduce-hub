@@ -7,10 +7,13 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import signUp from "../../../assets/icons/sign-up.svg";
 import { AuthContext } from "../../../Contexts/AuthProvider";
+import { useToken } from "../../../hooks/useToken";
 
 const SignUp = () => {
   const [error, setError] = useState("");
   const { createUser, updateUserProfile } = useContext(AuthContext);
+  const [userEmail, setUserEmail] = useState("");
+  const [token] = useToken(userEmail);
 
   const {
     register,
@@ -18,6 +21,10 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
+
+  if (token) {
+    navigate("/");
+  }
 
   const handleSignUp = (userData) => {
     const formData = new FormData();
@@ -85,17 +92,7 @@ const SignUp = () => {
       .then((result) => {
         if (result.acknowledged) {
           toast.success("Successfully created Account");
-        }
-      });
-  };
-
-  const getUserToken = (email) => {
-    fetch(`http://localhost:5000/users/jwt?email=${email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.accessToken) {
-          localStorage.setItem("reuseReduceToken", data.accessToken);
-          navigate("/");
+          setUserEmail(email);
         }
       });
   };
