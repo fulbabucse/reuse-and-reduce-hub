@@ -7,8 +7,9 @@ import Spinner from "../../Pages/Shared/Spinner/Spinner";
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
+
   if (loading) {
-    <Spinner></Spinner>;
+    return <Spinner></Spinner>;
   }
 
   if (user) {

@@ -1,9 +1,8 @@
 import React from "react";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, handleBookingProduct }) => {
   const {
     brand_name,
-    category_name,
     contact_number,
     location,
     model_name,
@@ -14,7 +13,6 @@ const ProductCard = ({ product }) => {
     seller_name,
     used_time,
   } = product;
-  console.log(product);
   return (
     <div>
       <div className="flex flex-col items-center bg-white border rounded-lg shadow-md md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
@@ -40,6 +38,7 @@ const ProductCard = ({ product }) => {
             <p>Contact: {contact_number}</p>
             <div className="mt-2">
               <button
+                onClick={() => handleBookingProduct(product)}
                 className="inline-block px-6 py-2.5 bg-secondaryColor text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-secondaryColor hover:shadow-lg focus:bg-secondaryColor focus:shadow-lg focus:outline-none focus:ring-0 active:bg-secondaryColor active:shadow-lg transition duration-150 ease-in-out"
                 data-bs-toggle="modal"
                 data-bs-target="#productModal"

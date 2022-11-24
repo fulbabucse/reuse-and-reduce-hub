@@ -13,6 +13,7 @@ import AdminRoute from "../AdminRoute/AdminRoute";
 import AllProducts from "../../Pages/Dashboard/Products/AllProducts";
 import AddProduct from "../../Pages/Dashboard/Products/AddProduct";
 import HomeProducts from "../../Pages/Home/HomeProducts/HomeProducts";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -30,10 +31,14 @@ export const router = createBrowserRouter([
       { path: "sign-up", element: <SignUp></SignUp> },
       { path: "sign-in", element: <SignIn></SignIn> },
       {
-        path: "/category/:category_name",
+        path: "/category/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.category_name}`),
-        element: <HomeProducts></HomeProducts>,
+          fetch(`http://localhost:5000/categories/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <HomeProducts></HomeProducts>
+          </PrivateRoute>
+        ),
       },
     ],
   },
