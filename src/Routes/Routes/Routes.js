@@ -14,11 +14,13 @@ import AllProducts from "../../Pages/Dashboard/Products/AllProducts";
 import AddProduct from "../../Pages/Dashboard/Products/AddProduct";
 import HomeProducts from "../../Pages/Home/HomeProducts/HomeProducts";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       { path: "/", element: <Home></Home> },
       { path: "home", element: <Home></Home> },
@@ -44,6 +46,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
+    errorElement: <ErrorPage></ErrorPage>,
     element: (
       <AdminRoute>
         <DashboardLayout></DashboardLayout>
