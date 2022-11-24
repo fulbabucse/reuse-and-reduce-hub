@@ -12,6 +12,10 @@ const Categories = () => {
     },
   });
 
+  const handleProduct = (id) => {
+    console.log(id);
+  };
+
   return (
     <div className="my-4 lg:my-10">
       <h1 className="text-center text-xl lg:text-2xl font-semibold text-primaryColor">
@@ -22,7 +26,11 @@ const Categories = () => {
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-4 lg:my-10">
         {categories?.map((category) => (
-          <CategoryCard key={category?._id} category={category}></CategoryCard>
+          <CategoryCard
+            key={category?._id}
+            category={category}
+            handleProduct={handleProduct}
+          ></CategoryCard>
         ))}
       </div>
     </div>

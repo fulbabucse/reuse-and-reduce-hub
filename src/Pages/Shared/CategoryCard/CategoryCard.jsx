@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../../../assets/styles.css";
 
 const CategoryCard = ({ category }) => {
-  const { _id, category_name, image } = category;
+  const { category_name, image } = category;
 
   return (
     <div>
@@ -15,12 +16,14 @@ const CategoryCard = ({ category }) => {
             <h5 className="text-gray-700 text-xl font-medium mb-2">
               {category_name}
             </h5>
-            <button
-              type="button"
-              className="inline-block px-4 py-2 bg-gradient-to-r from-primaryColor to-secondaryColor text-white font-medium text-lg leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out"
-            >
-              See Product
-            </button>
+            <Link to={`/category/${category_name}`}>
+              <button
+                type="button"
+                className="inline-block px-4 py-2 bg-gradient-to-r from-primaryColor to-secondaryColor text-white font-medium text-lg leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out"
+              >
+                See Product
+              </button>
+            </Link>
           </div>
         </div>
       </div>
