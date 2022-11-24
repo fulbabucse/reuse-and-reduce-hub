@@ -71,6 +71,12 @@ const Users = () => {
                     >
                       Actions
                     </th>
+                    <th
+                      scope="col"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                    >
+                      User Type
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -105,6 +111,9 @@ const Users = () => {
                             Make Admin
                           </button>
                         )}
+                      </td>
+                      <td className="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                        {user?.userType === "Seller" ? "Seller" : "Buyer"}
                       </td>
                     </tr>
                   ))}

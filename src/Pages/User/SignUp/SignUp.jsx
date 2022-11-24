@@ -55,7 +55,11 @@ const SignUp = () => {
 
             updateUserProfile(updateInfo)
               .then(() => {
-                savedToDatabase(res.user?.displayName, userData.email);
+                savedToDatabase(
+                  res.user?.displayName,
+                  userData.email,
+                  userData.userType
+                );
               })
               .catch((err) => console.error(err));
           })
@@ -76,10 +80,11 @@ const SignUp = () => {
       .catch((err) => console.error(err));
   };
 
-  const savedToDatabase = (name, email) => {
+  const savedToDatabase = (name, email, userType) => {
     const user = {
       name,
       email,
+      userType,
     };
     fetch(`http://localhost:5000/users`, {
       method: "POST",
@@ -234,6 +239,41 @@ const SignUp = () => {
                 {errors.confirmPassword && (
                   <p className="text-red-400 text-sm font-medium">
                     {errors.confirmPassword?.message}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div>
+              <div class="">
+                <select
+                  {...register("userType", {
+                    required: "Account Type is required",
+                  })}
+                  class="form-select focus:shadow-none appearance-none
+      block
+      w-full
+      px-3
+      py-1.5
+      text-base
+      font-normal
+      text-gray-700
+      bg-white bg-clip-padding bg-no-repeat
+      border border-solid border-gray-300
+      rounded
+      transition
+      ease-in-out
+      m-0
+      focus:text-gray-700 focus:bg-white focus:border-primaryColor focus:outline-none"
+                  aria-label="Default select example"
+                >
+                  <option selected>Select One</option>
+                  <option value="Buyer">Buyer</option>
+                  <option value="Seller">Seller</option>
+                </select>
+                {errors.userType && (
+                  <p className="text-red-400 text-sm font-medium">
+                    {errors.userType?.message}
                   </p>
                 )}
               </div>

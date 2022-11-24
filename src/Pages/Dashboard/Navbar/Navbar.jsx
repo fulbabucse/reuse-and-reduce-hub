@@ -124,6 +124,29 @@ const Navbar = () => {
                       >
                         <li>
                           <Link
+                            to="/dashboard/my-products"
+                            className="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              font-normal
+              block
+              w-full
+              text-center
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:text-white
+              hover:bg-primaryColor
+              rounded-md
+            "
+                          >
+                            My Products
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
                             to="/dashboard/all-products"
                             className="
               dropdown-item
