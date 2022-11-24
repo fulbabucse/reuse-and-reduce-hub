@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const AddProduct = () => {
+  const { user } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -16,7 +18,7 @@ const AddProduct = () => {
     const formData = new FormData();
     formData.append("image", productData.product_sample[0]);
 
-    const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMGBB_API_KEY}`;
+    const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_Imgbb_API_KEY}`;
     fetch(url, {
       method: "POST",
       body: formData,
@@ -27,6 +29,8 @@ const AddProduct = () => {
           brand_name: productData.brand_name,
           category_name: productData.category_name,
           location: productData.location,
+          email: productData.email,
+          postedTime,
           contact_number: productData.contact_number,
           originalPrice: productData.original_price,
           resalePrice: productData.resale_price,
@@ -82,6 +86,8 @@ const AddProduct = () => {
                 {...register("seller_name", {
                   required: "Seller Name is required",
                 })}
+                defaultValue={user?.displayName}
+                readOnly
                 className="form-control block
         w-full
         px-3
@@ -103,6 +109,39 @@ const AddProduct = () => {
               {errors.seller_name && (
                 <p className="text-red-400 font-semibold text-sm">
                   {errors?.seller_name?.message}
+                </p>
+              )}
+            </div>
+
+            <div className="form-group">
+              <input
+                type="email"
+                {...register("email", {
+                  required: "Email is required",
+                })}
+                defaultValue={user?.email}
+                readOnly
+                className="form-control block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:shadow-none focus:border-primaryColor focus:outline-none"
+                id="exampleInput7"
+                placeholder="Seller Email"
+              />
+
+              {errors.email && (
+                <p className="text-red-400 font-semibold text-sm">
+                  {errors?.email?.message}
                 </p>
               )}
             </div>
@@ -433,8 +472,6 @@ const AddProduct = () => {
                 </p>
               )}
             </div>
-
-            <br />
 
             <div className="flex justify-center">
               <div className="w-full xl:w-96">

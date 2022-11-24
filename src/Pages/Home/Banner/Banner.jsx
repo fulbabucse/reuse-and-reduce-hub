@@ -3,7 +3,7 @@ import React from "react";
 const Banner = () => {
   return (
     <div>
-      <div className="h-56 sm:h-64 xl:h-96 2xl:h-96">
+      <div>
         <div
           id="carouselExampleCrossfade"
           className="carousel slide carousel-fade relative"
