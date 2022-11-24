@@ -1,20 +1,60 @@
 import React from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const BookModal = ({ productData }) => {
+  const [modalClose, setModalClose] = useState(false);
   const { user } = useContext(AuthContext);
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { model_name, resalePrice } = productData;
+  const {
+    model_name,
+    resalePrice,
+    product_image,
+    brand_name,
+    contact_number,
+    location,
+    seller_name,
+  } = productData;
 
   const handleBookingOrder = (bookingData) => {
-    console.log(bookingData);
+    const booking = {
+      buyerName: user?.displayName,
+      email: user?.email,
+      product: model_name,
+      seller_name,
+      price: resalePrice,
+      buyerImage: user?.photoURL,
+      product_image,
+      meetingPlace: bookingData.meetingPlace,
+      phoneNumber: bookingData.phoneNumber,
+      brand_name,
+      sellerContact: contact_number,
+      location,
+    };
+
+    fetch(`http://localhost:5000/bookings`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          setModalClose(true);
+          toast.success("Successfully Booked Your Order");
+        }
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -220,6 +260,7 @@ const BookModal = ({ productData }) => {
                     <button
                       type="submit"
                       className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
+                      data-bs-dismiss="modal"
                     >
                       Submit
                     </button>
