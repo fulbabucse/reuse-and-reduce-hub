@@ -1,0 +1,34 @@
+[
+  {
+    "category_name": "Xiaomi",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Xiaomi_logo_%282021-%29.svg/2048px-Xiaomi_logo_%282021-%29.svg.png"
+  },
+  {
+    "category_name": "Apple",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Apple_Store_logo.svg/2048px-Apple_Store_logo.svg.png"
+  },
+  {
+    "category_name": "Samsung",
+    "image": "https://static.vecteezy.com/system/resources/previews/006/892/647/original/samsung-logo-icon-editorial-free-vector.jpg"
+  },
+  {
+    "category_name": "Oneplus",
+    "image": "https://www.oneplus.com/content/dam/oasis/page/common/logo/OnePlus_Logo.png"
+  },
+  {
+    "category_name": "Nokia",
+    "image": "https://www.nokia.com/sites/default/files/styles/scale_1920_no_crop/public/media/img_7524.jpg"
+  },
+  {
+    "category_name": "Vivo",
+    "image": "https://1000logos.net/wp-content/uploads/2022/02/Vivo-Logo.png"
+  },
+  {
+    "category_name": "Realme",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Realme-realme-_logo_box-RGB-01.png"
+  },
+  {
+    "category_name": "Oppo",
+    "image": "https://download.logo.wine/logo/Oppo/Oppo-Logo.wine.png"
+  }
+]

@@ -58,11 +58,11 @@ const Navbar = () => {
                   Home
                 </Link>
 
-                <div class="flex justify-center">
+                <div className="flex justify-center">
                   <div>
-                    <div class="dropdown relative">
+                    <div className="dropdown relative">
                       <a
-                        class="
+                        className="
           dropdown-toggle
           px-6
           font-medium
@@ -88,7 +88,7 @@ const Navbar = () => {
                           focusable="false"
                           data-prefix="fas"
                           data-icon="caret-down"
-                          class="w-2 ml-2"
+                          className="w-2 ml-2"
                           role="img"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 320 512"
@@ -100,7 +100,7 @@ const Navbar = () => {
                         </svg>
                       </a>
                       <ul
-                        class="
+                        className="
           dropdown-menu
           w-40 mx-auto
           absolute
@@ -125,7 +125,7 @@ const Navbar = () => {
                         <li>
                           <Link
                             to="/dashboard/all-products"
-                            class="
+                            className="
               dropdown-item
               text-sm
               py-2
@@ -148,7 +148,7 @@ const Navbar = () => {
                         <li>
                           <Link
                             to="/dashboard/add-product"
-                            class="
+                            className="
                             dropdown-item
                             text-sm
                             py-2
