@@ -32,46 +32,46 @@ const MyProducts = () => {
         My Total Products {products.length}
       </h1>
 
-      <div class="flex flex-col">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="overflow-hidden">
-              <table class="min-w-full">
-                <thead class="bg-white border-b">
+      <div className="flex flex-col">
+        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="overflow-hidden">
+              <table className="min-w-full">
+                <thead className="bg-white border-b">
                   <tr>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-3 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-3 py-4 text-left"
                     >
                       No
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-3 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-3 py-4 text-left"
                     >
                       Product Name
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-3 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-3 py-4 text-left"
                     >
                       Price
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-3 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-3 py-4 text-left"
                     >
                       Brand Name
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-3 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-3 py-4 text-left"
                     >
                       Image
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
                       Actions
                     </th>
@@ -81,28 +81,28 @@ const MyProducts = () => {
                   {products?.map((product, index) => (
                     <tr
                       key={product?._id}
-                      class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
+                      className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
                     >
-                      <td class="px-3 py-1 whitespace-nowrap text-sm font-medium text-gray-900">
+                      <td className="px-3 py-1 whitespace-nowrap text-sm font-medium text-gray-900">
                         {index + 1}
                       </td>
-                      <td class="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap">
+                      <td className="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap">
                         {product?.model_name}
                       </td>
-                      <td class="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap">
+                      <td className="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap">
                         {product?.resalePrice}
                       </td>
-                      <td class="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap">
+                      <td className="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap">
                         {product?.brand_name}
                       </td>
-                      <td class="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap">
+                      <td className="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap">
                         <img
                           src={product?.product_image}
                           className="h-10 w-10 rounded-md"
                           alt=""
                         />
                       </td>
-                      <td class="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap">
+                      <td className="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap">
                         Action
                       </td>
                     </tr>

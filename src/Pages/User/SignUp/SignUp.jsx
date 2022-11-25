@@ -245,12 +245,12 @@ const SignUp = () => {
             </div>
 
             <div>
-              <div class="">
+              <div className="">
                 <select
                   {...register("userType", {
                     required: "Account Type is required",
                   })}
-                  class="form-select focus:shadow-none appearance-none
+                  className="form-select focus:shadow-none appearance-none
       block
       w-full
       px-3

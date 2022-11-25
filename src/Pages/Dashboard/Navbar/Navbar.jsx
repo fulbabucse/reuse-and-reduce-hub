@@ -6,10 +6,13 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/reuse-logo.jpg";
 import userThumb from "../../../assets/user_thumbnail.jpg";
 import { AuthContext } from "../../../Contexts/AuthProvider";
+import { useAdmin } from "../../../hooks/useAdmin";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const { user, userSignOut } = useContext(AuthContext);
+
+  const [isAdmin] = useAdmin(user?.email);
 
   const handleUserSignOut = () => {
     userSignOut()
@@ -58,11 +61,20 @@ const Navbar = () => {
                   Home
                 </Link>
 
-                <div className="flex justify-center">
-                  <div>
-                    <div className="dropdown relative">
-                      <a
-                        className="
+                <Link
+                  to="/dashboard/my-orders"
+                  className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
+                >
+                  My Orders
+                </Link>
+
+                {isAdmin && (
+                  <>
+                    <div className="flex justify-center">
+                      <div>
+                        <div className="dropdown relative">
+                          <a
+                            className="
           dropdown-toggle
           px-6
           font-medium
@@ -77,30 +89,30 @@ const Navbar = () => {
           items-center
           whitespace-nowrap
         "
-                        type="button"
-                        id="dropdownMenuButton2"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        Products
-                        <svg
-                          aria-hidden="true"
-                          focusable="false"
-                          data-prefix="fas"
-                          data-icon="caret-down"
-                          className="w-2 ml-2"
-                          role="img"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 320 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
-                          ></path>
-                        </svg>
-                      </a>
-                      <ul
-                        className="
+                            type="button"
+                            id="dropdownMenuButton2"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          >
+                            Products
+                            <svg
+                              aria-hidden="true"
+                              focusable="false"
+                              data-prefix="fas"
+                              data-icon="caret-down"
+                              className="w-2 ml-2"
+                              role="img"
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 320 512"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                              ></path>
+                            </svg>
+                          </a>
+                          <ul
+                            className="
           dropdown-menu
           w-40 mx-auto
           absolute
@@ -120,12 +132,12 @@ const Navbar = () => {
           bg-clip-padding
           border-none
         "
-                        aria-labelledby="productDropdown"
-                      >
-                        <li>
-                          <Link
-                            to="/dashboard/my-products"
-                            className="
+                            aria-labelledby="productDropdown"
+                          >
+                            <li>
+                              <Link
+                                to="/dashboard/my-products"
+                                className="
               dropdown-item
               text-sm
               py-2
@@ -141,14 +153,14 @@ const Navbar = () => {
               hover:bg-primaryColor
               rounded-md
             "
-                          >
-                            My Products
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/dashboard/all-products"
-                            className="
+                              >
+                                My Products
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                to="/dashboard/all-products"
+                                className="
               dropdown-item
               text-sm
               py-2
@@ -164,14 +176,14 @@ const Navbar = () => {
               hover:bg-primaryColor
               rounded-md
             "
-                          >
-                            All Products
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/dashboard/add-product"
-                            className="
+                              >
+                                All Products
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                to="/dashboard/add-product"
+                                className="
                             dropdown-item
                             text-sm
                             py-2
@@ -186,21 +198,23 @@ const Navbar = () => {
                             hover:text-white
                             hover:bg-primaryColor
                             rounded-md"
-                          >
-                            Add Product
-                          </Link>
-                        </li>
-                      </ul>
+                              >
+                                Add Product
+                              </Link>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
 
-                <Link
-                  to="/dashboard/users"
-                  className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
-                >
-                  Users
-                </Link>
+                    <Link
+                      to="/dashboard/users"
+                      className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
+                    >
+                      Users
+                    </Link>
+                  </>
+                )}
 
                 <div className="flex justify-center lg:flex lg:mt-0 lg:-mx-2">
                   <div>

@@ -11,7 +11,6 @@ import { useAdmin } from "../../../hooks/useAdmin";
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
   const { user, userSignOut } = useContext(AuthContext);
-  const [isAdmin] = useAdmin(user?.email);
 
   const handleUserSignOut = () => {
     userSignOut()
@@ -81,7 +80,7 @@ const Header = () => {
                   Contact Us
                 </Link>
 
-                {isAdmin && (
+                {user?.email && (
                   <Link
                     to="/dashboard"
                     className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
