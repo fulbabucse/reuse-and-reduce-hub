@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
+import ConfirmModal from "./ConfirmModal";
 
 const Users = () => {
+  const [modalData, setModalData] = useState({});
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -31,6 +33,19 @@ const Users = () => {
           refetch();
         } else {
           toast.error(data.message);
+        }
+      });
+  };
+
+  const handleDeleteMyUser = (id) => {
+    fetch(`http://localhost:5000/users/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          toast.success("An user deleted successfully");
+          refetch();
         }
       });
   };
@@ -69,6 +84,12 @@ const Users = () => {
                       scope="col"
                       className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
+                      Delete
+                    </th>
+                    <th
+                      scope="col"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                    >
                       Actions
                     </th>
                     <th
@@ -93,6 +114,17 @@ const Users = () => {
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                         {user?.email}
+                      </td>
+                      <td className="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                        <button
+                          type="button"
+                          onClick={() => setModalData(user)}
+                          data-bs-toggle="modal"
+                          data-bs-target="#confirmModal"
+                          className="inline-block px-2 py-2 bg-secondaryColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out"
+                        >
+                          Delete
+                        </button>
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                         {user?.role === "admin" ? (
@@ -124,6 +156,10 @@ const Users = () => {
           </div>
         </div>
       </div>
+      <ConfirmModal
+        modalData={modalData}
+        handleDeleteMyUser={handleDeleteMyUser}
+      ></ConfirmModal>
     </div>
   );
 };
