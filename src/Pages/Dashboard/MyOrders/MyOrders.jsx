@@ -27,8 +27,6 @@ const MyOrders = () => {
     return <Spinner></Spinner>;
   }
 
-  console.log(bookings);
-
   return (
     <div className="my-4">
       <h1 className="text-center text-xl lg:text-2xl font-semibold text-gray-700">

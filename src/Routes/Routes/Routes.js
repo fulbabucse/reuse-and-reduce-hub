@@ -17,7 +17,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import MyProducts from "../../Pages/Dashboard/Products/MyProducts";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
-import SellerRoute from "../SellerRoute/SellerRoute";
+import CombineRoute from "../CombineRoute/CombineRoute";
 
 export const router = createBrowserRouter([
   {
@@ -82,11 +82,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/add-product",
-        element: <AddProduct></AddProduct>,
+        element: (
+          <CombineRoute>
+            <AddProduct></AddProduct>
+          </CombineRoute>
+        ),
       },
       {
         path: "/dashboard/my-products",
-        element: <MyProducts></MyProducts>,
+        element: (
+          <CombineRoute>
+            <MyProducts></MyProducts>
+          </CombineRoute>
+        ),
       },
       {
         path: "/dashboard/my-orders",

@@ -7,14 +7,14 @@ import logo from "../../../assets/reuse-logo.jpg";
 import userThumb from "../../../assets/user_thumbnail.jpg";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import { useAdmin } from "../../../hooks/useAdmin";
-import { useSeller } from "../../../hooks/useSeller";
+import { useCombineUser } from "../../../hooks/useCombineUser";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const { user, userSignOut } = useContext(AuthContext);
 
   const [isAdmin] = useAdmin(user?.email);
-  const [isSeller] = useSeller(user?.email);
+  const [isCombineUser] = useCombineUser(user?.email);
 
   const handleUserSignOut = () => {
     userSignOut()
@@ -214,51 +214,22 @@ const Navbar = () => {
                   </div>
                 </div> */}
 
-                {(isSeller || isAdmin) && (
+                {(isCombineUser || isAdmin) && (
                   <li className="list-none">
                     <Link
                       to="/dashboard/my-products"
-                      className="
-dropdown-item
-text-sm
-py-2
-px-4
-font-normal
-block
-w-full
-text-center
-whitespace-nowrap
-bg-transparent
-text-gray-700
-hover:text-white
-hover:bg-primaryColor
-rounded-md
-"
+                      className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
                     >
                       My Products
                     </Link>
                   </li>
                 )}
 
-                {(isAdmin || isSeller) && (
+                {(isAdmin || isCombineUser) && (
                   <li className="list-none lg:mr-5">
                     <Link
                       to="/dashboard/add-product"
-                      className="
-                dropdown-item
-                text-sm
-                py-2
-                px-4
-                text-center
-                font-normal
-                block
-                w-full
-                whitespace-nowrap
-                bg-transparent
-                text-gray-700
-                hover:text-white
-                hover:bg-primaryColor
-                rounded-md"
+                      className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
                     >
                       Add Product
                     </Link>
@@ -269,22 +240,7 @@ rounded-md
                   <li className="list-none">
                     <Link
                       to="/dashboard/all-products"
-                      className="
-              dropdown-item
-              text-sm
-              py-2
-              px-4
-              font-normal
-              block
-              w-full
-              text-center
-              whitespace-nowrap
-              bg-transparent
-              text-gray-700
-              hover:text-white
-              hover:bg-primaryColor
-              rounded-md
-            "
+                      className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
                     >
                       All Products
                     </Link>

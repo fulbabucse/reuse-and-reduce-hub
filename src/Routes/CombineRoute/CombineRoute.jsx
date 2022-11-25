@@ -2,23 +2,23 @@ import React from "react";
 import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
-import { useSeller } from "../../hooks/useSeller";
+import { useCombineUser } from "../../hooks/useCombineUser";
 import Spinner from "../../Pages/Shared/Spinner/Spinner";
 
-const SellerRoute = ({ children }) => {
+const CombineRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
-  const [isSeller, sellerLoading] = useSeller();
+  const [isCombineUser, isCombineUserLoading] = useCombineUser(user?.email);
   const location = useLocation();
 
-  if (loading || sellerLoading) {
+  if (loading || isCombineUserLoading) {
     return <Spinner></Spinner>;
   }
 
-  if (user && isSeller) {
+  if (user && isCombineUser) {
     return children;
   }
 
   return <Navigate to="/sign-in" state={{ from: location }} replace></Navigate>;
 };
 
-export default SellerRoute;
+export default CombineRoute;
