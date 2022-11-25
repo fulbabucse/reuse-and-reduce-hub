@@ -71,9 +71,15 @@ const MyProducts = () => {
                     </th>
                     <th
                       scope="col"
-                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-3 py-4 text-left"
                     >
                       Actions
+                    </th>
+                    <th
+                      scope="col"
+                      className="text-sm font-medium text-gray-900 px-3 py-4 text-left"
+                    >
+                      Status
                     </th>
                   </tr>
                 </thead>
@@ -102,11 +108,13 @@ const MyProducts = () => {
                           alt=""
                         />
                       </td>
-                      <td className="text-sm flex gap-2 text-gray-900 font-light px-3 py-1">
+                      <td className="text-sm text-gray-900 font-light px-3 py-1">
                         <button className="inline-block px-2 py-2 bg-primaryColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out">
                           Delete
                         </button>
-                        {product?.sold ? (
+                      </td>
+                      <td className="text-sm text-gray-900 font-light px-3 py-1">
+                        {product?.sold === true ? (
                           <>
                             <button className="inline-block px-2 py-2 bg-secondaryColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out">
                               Sold

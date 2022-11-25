@@ -10,7 +10,11 @@ const HomeProducts = () => {
   const category = useLoaderData();
   const [productData, setProductData] = useState({});
 
-  const { data: products = [], isLoading } = useQuery({
+  const {
+    data: products = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const res = await fetch(
@@ -40,7 +44,7 @@ const HomeProducts = () => {
           ></ProductCard>
         ))}
       </div>
-      <BookModal productData={productData}></BookModal>
+      <BookModal productData={productData} refetch={refetch}></BookModal>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
-const BookModal = ({ productData }) => {
+const BookModal = ({ productData, refetch }) => {
   const [modalClose, setModalClose] = useState(false);
   const { user } = useContext(AuthContext);
   const {
@@ -14,6 +14,7 @@ const BookModal = ({ productData }) => {
     formState: { errors },
   } = useForm();
   const {
+    _id,
     model_name,
     resalePrice,
     product_image,
@@ -51,7 +52,21 @@ const BookModal = ({ productData }) => {
       .then((data) => {
         if (data.acknowledged) {
           setModalClose(true);
+        }
+      })
+      .catch((err) => console.error(err));
+
+    fetch(`http://localhost:5000/products/${_id}`, {
+      method: "PATCH",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
           toast.success("Successfully Booked Your Order");
+          refetch();
         }
       })
       .catch((err) => console.error(err));
