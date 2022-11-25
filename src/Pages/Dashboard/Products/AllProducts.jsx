@@ -20,8 +20,6 @@ const AllProducts = () => {
     return <Spinner></Spinner>;
   }
 
-  console.log(products);
-
   return (
     <div className="my-10">
       <h1 className="text-center text-xl lg:text-2xl font-semibold text-gray-700">

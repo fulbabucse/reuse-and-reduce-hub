@@ -73,7 +73,7 @@ const Users = () => {
                     </th>
                     <th
                       scope="col"
-                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
                     >
                       User Type
                     </th>
@@ -112,8 +112,9 @@ const Users = () => {
                           </button>
                         )}
                       </td>
-                      <td className="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
-                        {user?.userType === "Seller" ? "Seller" : "Buyer"}
+                      <td className="text-sm  text-gray-900 font-medium text-center px-6 py-2 whitespace-nowrap">
+                        {(user?.role === "admin" && "Admin") ||
+                          (user?.userType === "Seller" ? "Seller" : "Buyer")}
                       </td>
                     </tr>
                   ))}

@@ -17,6 +17,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import MyProducts from "../../Pages/Dashboard/Products/MyProducts";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 export const router = createBrowserRouter([
   {
@@ -81,19 +82,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/add-product",
-        element: (
-          <AdminRoute>
-            <AddProduct></AddProduct>
-          </AdminRoute>
-        ),
+        element: <AddProduct></AddProduct>,
       },
       {
         path: "/dashboard/my-products",
-        element: (
-          <AdminRoute>
-            <MyProducts></MyProducts>
-          </AdminRoute>
-        ),
+        element: <MyProducts></MyProducts>,
       },
       {
         path: "/dashboard/my-orders",

@@ -102,8 +102,23 @@ const MyProducts = () => {
                           alt=""
                         />
                       </td>
-                      <td className="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap">
-                        Action
+                      <td className="text-sm flex gap-2 text-gray-900 font-light px-3 py-1">
+                        <button className="inline-block px-2 py-2 bg-primaryColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out">
+                          Delete
+                        </button>
+                        {product?.sold ? (
+                          <>
+                            <button className="inline-block px-2 py-2 bg-secondaryColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out">
+                              Sold
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <button className="inline-block px-2 py-2 bg-baseColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out">
+                              Advertise
+                            </button>
+                          </>
+                        )}
                       </td>
                     </tr>
                   ))}
