@@ -1,11 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider";
+import ConfirmModal from "../../Shared/ConfirmModal/ConfirmModal";
 import Spinner from "../../Shared/Spinner/Spinner";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
+  const [modalData, setModalData] = useState({});
 
   const {
     data: products = [],
@@ -42,6 +45,19 @@ const MyProducts = () => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success(`Advertise Running ${new Date().toLocaleString()}`);
+          refetch();
+        }
+      });
+  };
+
+  const handleDeleteMyProduct = (id) => {
+    fetch(`http://localhost:5000/my-products/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          toast.success("Product delete successfully");
           refetch();
         }
       });
@@ -130,7 +146,12 @@ const MyProducts = () => {
                         />
                       </td>
                       <td className="text-sm text-gray-900 font-light px-3 py-1">
-                        <button className="inline-block px-2 py-2 bg-primaryColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out">
+                        <button
+                          data-bs-toggle="modal"
+                          data-bs-target="#confirmModal"
+                          onClick={() => setModalData(product)}
+                          className="inline-block px-2 py-2 bg-primaryColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out"
+                        >
                           Delete
                         </button>
                       </td>
@@ -172,6 +193,10 @@ const MyProducts = () => {
           </div>
         </div>
       </div>
+      <ConfirmModal
+        modalData={modalData}
+        handleDeleteMyProduct={handleDeleteMyProduct}
+      ></ConfirmModal>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const AddProduct = () => {
@@ -11,6 +12,8 @@ const AddProduct = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const navigate = useNavigate();
 
   const postedTime = new Date().toLocaleString();
 
@@ -54,6 +57,7 @@ const AddProduct = () => {
           .then((data) => {
             if (data.acknowledged) {
               toast.success("Successfully Product Added");
+              navigate("/dashboard/my-products");
             }
           })
           .catch((err) => console.error(err));
