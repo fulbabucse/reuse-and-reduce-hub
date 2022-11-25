@@ -105,7 +105,7 @@ const SignUp = () => {
   return (
     <div className="my-6 lg:my-16">
       <Helmet>
-        <title>Sign Up - Doctors Portal</title>
+        <title>Sign Up - Reuse and Reduce</title>
       </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
         <div className="">
