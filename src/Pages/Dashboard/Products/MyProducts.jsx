@@ -1,12 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import Spinner from "../../Shared/Spinner/Spinner";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
 
-  const { data: products = [], isLoading } = useQuery({
+  const {
+    data: products = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["my-products", user?.email],
     queryFn: async () => {
       const res = await fetch(
@@ -25,6 +30,22 @@ const MyProducts = () => {
   if (isLoading) {
     return <Spinner></Spinner>;
   }
+
+  const handleProductAdvertise = (id) => {
+    fetch(`http://localhost:5000/products/${id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success(`Advertise Running ${new Date().toLocaleString()}`);
+          refetch();
+        }
+      });
+  };
 
   return (
     <div className="my-4">
@@ -122,9 +143,24 @@ const MyProducts = () => {
                           </>
                         ) : (
                           <>
-                            <button className="inline-block px-2 py-2 bg-baseColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out">
-                              Advertise
-                            </button>
+                            {product?.advertise === true ? (
+                              <>
+                                <button className="inline-block px-2 py-2 bg-baseColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out">
+                                  Advertise Running
+                                </button>
+                              </>
+                            ) : (
+                              <>
+                                <button
+                                  onClick={() =>
+                                    handleProductAdvertise(product?._id)
+                                  }
+                                  className="inline-block px-2 py-2 bg-baseColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out"
+                                >
+                                  Advertise
+                                </button>
+                              </>
+                            )}
                           </>
                         )}
                       </td>

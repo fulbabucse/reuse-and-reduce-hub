@@ -41,13 +41,41 @@ const SignIn = () => {
       });
   };
   const handleGoogleSignIn = () => {
+    const userType = "Buyer";
     googleSignIn()
       .then((result) => {
         setUserEmail(result?.user?.email);
-        toast.success("Successfully Google Sign In");
+        const user = {
+          name: result?.user?.displayName,
+          email: result?.user?.email,
+          userType,
+        };
+        savedToDatabase(user);
       })
       .catch((err) => console.error(err));
   };
+
+  const savedToDatabase = (user) => {
+    // const user = {
+    //   name,
+    //   email,
+    //   userType,
+    // };
+    fetch(`http://localhost:5000/users/${user?.email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.acknowledged) {
+          toast.success("Successfully Google Sign In");
+        }
+      });
+  };
+
   return (
     <div className="my-6 lg:my-16">
       <Helmet>
@@ -135,8 +163,6 @@ const SignIn = () => {
               onClick={handleGoogleSignIn}
               className="px-7 py-3 text-white font-medium text-sm leading-snug capitalize rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3 bg-amber-600"
               role="button"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color="light"
             >
               <FaGoogle className="mx-1"></FaGoogle> Continue with Google
             </button>
