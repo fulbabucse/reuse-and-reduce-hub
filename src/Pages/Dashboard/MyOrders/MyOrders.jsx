@@ -133,12 +133,12 @@ const MyOrders = () => {
                               />
                             </td>
                             <td className="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap">
-                              {!booking?.paid && (
-                                <Link to="/">
+                              {!booking?.paymentStatus && (
+                                <Link
+                                  to={`/dashboard/payments/${booking?._id}`}
+                                >
                                   <button
                                     type="button"
-                                    data-mdb-ripple="true"
-                                    data-mdb-ripple-color="light"
                                     className="inline-block px-4 py-1 bg-gradient-to-r from-primaryColor to-secondaryColor text-white font-medium text-lg leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out"
                                   >
                                     Pay
@@ -146,7 +146,7 @@ const MyOrders = () => {
                                 </Link>
                               )}
 
-                              {booking?.paid && (
+                              {booking?.paymentStatus === true && (
                                 <h4 className="text-md font-semibold text-primaryColor">
                                   Paid
                                 </h4>

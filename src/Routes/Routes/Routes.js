@@ -18,6 +18,7 @@ import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import MyProducts from "../../Pages/Dashboard/Products/MyProducts";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import CombineRoute from "../CombineRoute/CombineRoute";
+import Payments from "../../Pages/Dashboard/Payments/Payments";
 
 export const router = createBrowserRouter([
   {
@@ -101,6 +102,16 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyOrders></MyOrders>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/payments/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/bookings/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <Payments></Payments>
           </PrivateRoute>
         ),
       },
