@@ -1,7 +1,10 @@
 import React from "react";
+import { useContext } from "react";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const ProductCard = ({ product, handleBookingProduct }) => {
+  const { user } = useContext(AuthContext);
   const {
     _id,
     brand_name,
@@ -18,6 +21,11 @@ const ProductCard = ({ product, handleBookingProduct }) => {
   } = product;
 
   const handleReportProduct = (id) => {
+    if (!user?.email) {
+      toast.error("You must login to report");
+      return;
+    }
+
     fetch(`http://localhost:5000/products/report/${id}`, {
       method: "PATCH",
       headers: {

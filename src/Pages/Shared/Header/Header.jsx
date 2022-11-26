@@ -3,10 +3,8 @@ import { useContext } from "react";
 import toast from "react-hot-toast";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import logo from "../../../assets/reuse-logo.jpg";
 import userThumb from "../../../assets/user_thumbnail.jpg";
 import { AuthContext } from "../../../Contexts/AuthProvider";
-import { useAdmin } from "../../../hooks/useAdmin";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
@@ -27,9 +25,8 @@ const Header = () => {
             <div className="flex items-center justify-between">
               <div>
                 <Link to="/">
-                  <h1 className="flex items-center gap-1 text-xl lg:text-3xl font-bold text-gray-800">
-                    <img className="10-4 h-10" src={logo} alt="" /> Reuse and
-                    Reduce
+                  <h1 className="text-xl lg:text-3xl font-bold text-gray-800">
+                    Reuse & Reduce
                   </h1>
                 </Link>
               </div>
@@ -90,7 +87,7 @@ const Header = () => {
                 )}
 
                 <div className="flex justify-center lg:flex lg:mt-0 lg:-mx-2">
-                  <div>
+                  <div className="ml-4">
                     <div className="flex justify-center">
                       <div className="dropdown relative">
                         <button

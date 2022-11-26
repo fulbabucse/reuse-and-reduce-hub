@@ -1,12 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { useContext } from "react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../../Contexts/AuthProvider";
 import ProductCard from "../../Shared/ProductCard/ProductCard";
 import Spinner from "../../Shared/Spinner/Spinner";
 import BookModal from "./BookModal";
 
 const HomeProducts = () => {
+  const { user } = useContext(AuthContext);
   const category = useLoaderData();
   const [productData, setProductData] = useState({});
 
@@ -26,6 +30,13 @@ const HomeProducts = () => {
   });
 
   const handleBookingProduct = (productInfo) => {
+    if (!user?.email) {
+      toast.error(
+        "If you want to make a booking, you have to sign in or sign up first"
+      );
+      return;
+    }
+
     setProductData(productInfo);
   };
 
