@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { Helmet } from "react-helmet";
 import Spinner from "../../Shared/Spinner/Spinner";
 
 const ReportedProducts = () => {
@@ -22,6 +23,9 @@ const ReportedProducts = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Reported Products - Admin Reuse and Reduce</title>
+      </Helmet>
       {reportedProducts.length === 0 ? (
         <>
           <h1 className="text-center text-xl mt-5 lg:text-2xl font-semibold text-gray-700">

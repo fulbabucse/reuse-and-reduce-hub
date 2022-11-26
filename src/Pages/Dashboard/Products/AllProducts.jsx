@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { Helmet } from "react-helmet";
 import Spinner from "../../Shared/Spinner/Spinner";
 
 const AllProducts = () => {
@@ -22,6 +23,9 @@ const AllProducts = () => {
 
   return (
     <div className="my-10">
+      <Helmet>
+        <title>All Products - Admin Reuse and Reduce</title>
+      </Helmet>
       <h1 className="text-center text-xl lg:text-2xl font-semibold text-gray-700">
         Total Products {products.length}
       </h1>

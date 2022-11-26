@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useContext } from "react";
+import { Helmet } from "react-helmet";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import Spinner from "../../Shared/Spinner/Spinner";
 
@@ -23,6 +24,9 @@ const MyBuyers = () => {
 
   return (
     <>
+      <Helmet>
+        <title>My Buyers - Admin Reuse and Reduce</title>
+      </Helmet>
       {myBuyers.length === 0 ? (
         <>
           <h1 className="text-center text-xl mt-5 lg:text-2xl font-semibold text-gray-700">

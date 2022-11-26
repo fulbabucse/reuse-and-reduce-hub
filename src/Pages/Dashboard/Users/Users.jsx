@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
 import ConfirmModal from "./ConfirmModal";
 
@@ -52,6 +53,9 @@ const Users = () => {
 
   return (
     <div className="my-4">
+      <Helmet>
+        <title>All Sellers - Admin Reuse and Reduce</title>
+      </Helmet>
       <h1 className="text-center text-xl lg:text-2xl text-gray-700 font-semibold my-3">
         All Users
       </h1>

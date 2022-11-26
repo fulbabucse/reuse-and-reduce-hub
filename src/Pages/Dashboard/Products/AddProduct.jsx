@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -76,6 +77,9 @@ const AddProduct = () => {
 
   return (
     <div className="my-4">
+      <Helmet>
+        <title>Add Product - Admin Reuse and Reduce</title>
+      </Helmet>
       <div>
         <h1 className="text-center mb-4 text-xl lg:text-2xl font-semibold text-gray-700">
           Add Product

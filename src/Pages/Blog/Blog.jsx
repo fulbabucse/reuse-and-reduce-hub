@@ -1,8 +1,12 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 
 const Blog = () => {
   return (
     <div className="w-full lg:w-3/5 mx-auto my-5">
+      <Helmet>
+        <title>Blog - Reuse and Reduce</title>
+      </Helmet>
       <div className="accordion accordion-flush" id="accordionFlushExample">
         <div className="accordion-item border-t-0 border-l-0 border-r-0 rounded-none bg-white border border-gray-200">
           <h2 className="accordion-header mb-0" id="flush-headingOne">

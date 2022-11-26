@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import ConfirmModal from "../../Shared/ConfirmModal/ConfirmModal";
@@ -65,6 +66,9 @@ const MyProducts = () => {
 
   return (
     <div className="my-4">
+      <Helmet>
+        <title>My Products - Admin Reuse and Reduce</title>
+      </Helmet>
       <h1 className="text-center text-xl lg:text-2xl font-semibold text-gray-700">
         My Total Products {products.length}
       </h1>

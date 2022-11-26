@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useContext } from "react";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
@@ -46,6 +47,9 @@ const HomeProducts = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Category - Reuse and Reduce</title>
+      </Helmet>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-4 lg:my-10 px-4 lg:px-0">
         {products?.map((product) => (
           <ProductCard
