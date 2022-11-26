@@ -6,7 +6,6 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const BookModal = ({ productData, refetch }) => {
-  const [modalClose, setModalClose] = useState(false);
   const { user } = useContext(AuthContext);
   const {
     register,
@@ -22,12 +21,14 @@ const BookModal = ({ productData, refetch }) => {
     contact_number,
     location,
     seller_name,
+    email,
   } = productData;
 
   const handleBookingOrder = (bookingData) => {
     const booking = {
       buyerName: user?.displayName,
       email: user?.email,
+      seller_email: email,
       product: model_name,
       seller_name,
       price: resalePrice,
@@ -38,6 +39,7 @@ const BookModal = ({ productData, refetch }) => {
       brand_name,
       sellerContact: contact_number,
       location,
+      bookingId: _id,
     };
 
     fetch(`http://localhost:5000/bookings`, {
@@ -51,22 +53,9 @@ const BookModal = ({ productData, refetch }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          setModalClose(true);
-        }
-      })
-      .catch((err) => console.error(err));
-
-    fetch(`http://localhost:5000/products/${_id}`, {
-      method: "PATCH",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount > 0) {
-          toast.success("Successfully Booked Your Order");
-          refetch();
+          toast.success(
+            "Booking Complete now! Now go to My Orders and make payment"
+          );
         }
       })
       .catch((err) => console.error(err));

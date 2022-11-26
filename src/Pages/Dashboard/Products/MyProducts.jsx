@@ -166,7 +166,7 @@ const MyProducts = () => {
                           <>
                             {product?.advertise === true ? (
                               <>
-                                <button className="inline-block px-2 py-2 bg-baseColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out">
+                                <button className="inline-block px-2 py-2 bg-purple-500 text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out">
                                   Advertise Running
                                 </button>
                               </>

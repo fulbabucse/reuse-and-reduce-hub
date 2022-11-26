@@ -28,7 +28,9 @@ const Advertise = () => {
   }
 
   return (
-    <div className={`my-4 lg:my-10 ${products.length === 0 && "hidden"}`}>
+    <div
+      className={`my-4 lg:my-10 ${products[0].advertise === false && "hidden"}`}
+    >
       <h1 className="text-center text-xl lg:text-2xl font-semibold text-primaryColor">
         Top Advertise Products
       </h1>

@@ -71,25 +71,33 @@ const Navbar = () => {
                 </Link>
 
                 {(isCombineUser || isAdmin) && (
-                  <li className="list-none">
-                    <Link
-                      to="/dashboard/my-products"
-                      className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
-                    >
-                      My Products
-                    </Link>
-                  </li>
-                )}
+                  <>
+                    <li className="list-none">
+                      <Link
+                        to="/dashboard/my-products"
+                        className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
+                      >
+                        My Products
+                      </Link>
+                    </li>
+                    <li className="list-none lg:mr-5">
+                      <Link
+                        to="/dashboard/add-product"
+                        className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
+                      >
+                        Add Product
+                      </Link>
+                    </li>
 
-                {(isAdmin || isCombineUser) && (
-                  <li className="list-none lg:mr-5">
-                    <Link
-                      to="/dashboard/add-product"
-                      className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
-                    >
-                      Add Product
-                    </Link>
-                  </li>
+                    <li className="list-none lg:mr-5">
+                      <Link
+                        to="/dashboard/my-buyers"
+                        className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
+                      >
+                        My Buyers
+                      </Link>
+                    </li>
+                  </>
                 )}
 
                 {isAdmin && (

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({ bookingData }) => {
   const [cardError, setCardError] = useState("");
@@ -12,6 +13,7 @@ const CheckoutForm = ({ bookingData }) => {
 
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
 
   const {
     buyerName,
@@ -23,6 +25,8 @@ const CheckoutForm = ({ bookingData }) => {
     product,
     product_image,
     brand_name,
+    bookingId,
+    seller_email,
   } = bookingData;
 
   useEffect(() => {
@@ -95,16 +99,15 @@ const CheckoutForm = ({ bookingData }) => {
         brand_name,
         price,
         transectionId: paymentIntent.id,
-        bookingId: _id,
+        paymentId: _id,
         paymentMethod,
+        seller_email,
       };
       fetch("http://localhost:5000/payments", {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem(
-            "doctors-portal-access-token"
-          )}`,
+          authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
         },
         body: JSON.stringify(paymentInfo),
       })
@@ -114,6 +117,19 @@ const CheckoutForm = ({ bookingData }) => {
             setSucceeded("Congrats! Complete your payment");
             setTransectionId(paymentIntent.id);
             SetLoading(false);
+            fetch(`http://localhost:5000/products/${bookingId}`, {
+              method: "PATCH",
+              headers: {
+                authorization: `Bearer ${localStorage.getItem(
+                  "reuseReduceToken"
+                )}`,
+              },
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                navigate("/dashboard/my-orders");
+              })
+              .catch((err) => console.error(err));
             toast.success("Congrats! Complete your payment");
           }
         });

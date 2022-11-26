@@ -44,24 +44,22 @@ const SignIn = () => {
     const userType = "Buyer";
     googleSignIn()
       .then((result) => {
-        setUserEmail(result?.user?.email);
-        const user = {
-          name: result?.user?.displayName,
-          email: result?.user?.email,
-          userType,
-        };
-        savedToDatabase(user);
+        savedToDatabase(
+          result?.user?.displayName,
+          result?.user?.email,
+          userType
+        );
       })
       .catch((err) => console.error(err));
   };
 
-  const savedToDatabase = (user) => {
-    // const user = {
-    //   name,
-    //   email,
-    //   userType,
-    // };
-    fetch(`http://localhost:5000/users/${user?.email}`, {
+  const savedToDatabase = (name, email, userType) => {
+    const user = {
+      name,
+      email,
+      userType,
+    };
+    fetch(`http://localhost:5000/users/${email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -71,6 +69,7 @@ const SignIn = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.acknowledged) {
+          setUserEmail(email);
           toast.success("Successfully Google Sign In");
         }
       });
