@@ -22,3 +22,10 @@ It is an online old mobile-phone buying and selling website, where a user can lo
 - Mongodb
 - Stripe Payment
 - Firebase Authentication
+
+### Live link: https://reuse-and-reduce.web.app
+
+#### Admin
+
+- Email: fulbabucse@gmail.com
+- Password: F@him1
