@@ -8,7 +8,7 @@ import SignUp from "../../Pages/User/SignUp/SignUp";
 import SignIn from "../../Pages/User/SignIn/SignIn";
 import DashboardLayout from "../../Layouts/DashboardLayout";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
-import Users from "../../Pages/Dashboard/Users/Users";
+import Sellers from "../../Pages/Dashboard/Users/Sellers";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import AllProducts from "../../Pages/Dashboard/Products/AllProducts";
 import AddProduct from "../../Pages/Dashboard/Products/AddProduct";
@@ -21,7 +21,8 @@ import CombineRoute from "../CombineRoute/CombineRoute";
 import Payments from "../../Pages/Dashboard/Payments/Payments";
 import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
 import ReportedProducts from "../../Pages/Dashboard/Products/ReportedProducts";
-import AllUsers from "../../Pages/Dashboard/Users/AllUsers";
+import Buyers from "../../Pages/Dashboard/Users/Buyers";
+import Admin from "../../Pages/Dashboard/Users/Admin";
 
 export const router = createBrowserRouter([
   {
@@ -69,18 +70,26 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/all-sellers",
+        path: "/dashboard/admin",
         element: (
           <AdminRoute>
-            <Users></Users>
+            <Admin></Admin>
           </AdminRoute>
         ),
       },
       {
-        path: "/dashboard/all-users",
+        path: "/dashboard/all-sellers",
         element: (
           <AdminRoute>
-            <AllUsers></AllUsers>
+            <Sellers></Sellers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/all-buyers",
+        element: (
+          <AdminRoute>
+            <Buyers></Buyers>
           </AdminRoute>
         ),
       },

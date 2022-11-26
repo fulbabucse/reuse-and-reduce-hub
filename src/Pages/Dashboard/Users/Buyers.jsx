@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
 import ConfirmModal from "./ConfirmModal";
 
-const AllUsers = () => {
+const Buyers = () => {
   const [modalData, setModalData] = useState({});
   const { data: users = [], refetch } = useQuery({
     queryKey: ["buyers"],
@@ -92,12 +92,6 @@ const AllUsers = () => {
                     </th>
                     <th
                       scope="col"
-                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                    >
-                      Actions
-                    </th>
-                    <th
-                      scope="col"
                       className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
                     >
                       User Type
@@ -130,27 +124,8 @@ const AllUsers = () => {
                           Delete
                         </button>
                       </td>
-                      <td className="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
-                        {user?.role === "admin" ? (
-                          <button
-                            type="button"
-                            className="inline-block px-2 py-2 bg-baseColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out"
-                          >
-                            Remove Admin
-                          </button>
-                        ) : (
-                          <button
-                            type="button"
-                            onClick={() => handleMakeAdmin(user?._id)}
-                            className="inline-block px-2 py-2 bg-gradient-to-r from-primaryColor to-secondaryColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out"
-                          >
-                            Make Admin
-                          </button>
-                        )}
-                      </td>
                       <td className="text-sm  text-gray-900 font-medium text-center px-6 py-2 whitespace-nowrap">
-                        {(user?.role === "admin" && "Admin") ||
-                          (user?.userType === "Seller" ? "Seller" : "Buyer")}
+                        {user?.userType === "Buyer" && "Buyer"}
                       </td>
                     </tr>
                   ))}
@@ -168,4 +143,4 @@ const AllUsers = () => {
   );
 };
 
-export default AllUsers;
+export default Buyers;

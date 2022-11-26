@@ -179,6 +179,26 @@ const Navbar = () => {
                           >
                             <li>
                               <Link
+                                to="/dashboard/admin"
+                                className="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              font-medium text-center
+              block
+              w-32
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-100
+            "
+                              >
+                                Admin
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
                                 to="/dashboard/all-sellers"
                                 className="
               dropdown-item
@@ -199,7 +219,7 @@ const Navbar = () => {
                             </li>
                             <li>
                               <Link
-                                to="/dashboard/all-users"
+                                to="/dashboard/all-buyers"
                                 className="
               dropdown-item
               text-sm
@@ -214,7 +234,7 @@ const Navbar = () => {
               hover:bg-gray-100
             "
                               >
-                                All Users
+                                All buyers
                               </Link>
                             </li>
                           </ul>
