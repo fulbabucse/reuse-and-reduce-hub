@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import Spinner from "../../Shared/Spinner/Spinner";
 
 const ReportedProducts = () => {
   const { data: reportedProducts = [], isLoading } = useQuery({
@@ -14,6 +15,10 @@ const ReportedProducts = () => {
   const handleDeleteReportProduct = (id) => {
     console.log(id);
   };
+
+  if (isLoading) {
+    return <Spinner></Spinner>;
+  }
 
   return (
     <>
