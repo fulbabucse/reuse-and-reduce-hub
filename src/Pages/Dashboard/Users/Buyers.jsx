@@ -19,25 +19,6 @@ const Buyers = () => {
     },
   });
 
-  const handleMakeAdmin = (id) => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.modifiedCount > 0) {
-          toast.success("You are Now Admin");
-          refetch();
-        } else {
-          toast.error(data.message);
-        }
-      });
-  };
-
   const handleDeleteMyUser = (id) => {
     fetch(`http://localhost:5000/users/${id}`, {
       method: "DELETE",

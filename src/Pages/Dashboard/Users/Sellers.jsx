@@ -2,11 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
+import Spinner from "../../Shared/Spinner/Spinner";
 import UserDeleteConfirm from "./UserDeleteConfirm";
 
 const Sellers = () => {
   const [modalData, setModalData] = useState({});
-  const { data: users = [], refetch } = useQuery({
+  const {
+    data: users = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["sellers"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/sellers", {
@@ -18,25 +23,6 @@ const Sellers = () => {
       return data;
     },
   });
-
-  const handleMakeAdmin = (id) => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.modifiedCount > 0) {
-          toast.success("You are Now Admin");
-          refetch();
-        } else {
-          toast.error(data.message);
-        }
-      });
-  };
 
   const handleDeleteMyUser = (id) => {
     fetch(`http://localhost:5000/users/${id}`, {
@@ -50,6 +36,26 @@ const Sellers = () => {
         }
       });
   };
+
+  const handleSellerVerify = (id) => {
+    fetch(`http://localhost:5000/verify-seller?id=${id}`, {
+      method: "PATCH",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Verified Seller Complete");
+          refetch();
+        }
+      });
+  };
+
+  if (isLoading) {
+    return <Spinner></Spinner>;
+  }
 
   return (
     <div className="my-4">
@@ -94,6 +100,12 @@ const Sellers = () => {
                       scope="col"
                       className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
                     >
+                      Verify
+                    </th>
+                    <th
+                      scope="col"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+                    >
                       User Type
                     </th>
                   </tr>
@@ -119,10 +131,28 @@ const Sellers = () => {
                           onClick={() => setModalData(user)}
                           data-bs-toggle="modal"
                           data-bs-target="#confirmModal"
-                          className="inline-block px-2 py-2 bg-secondaryColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out"
+                          className="inline-block px-2 py-2 bg-red-500 text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out"
                         >
                           Delete
                         </button>
+                      </td>
+                      <td className="text-sm  text-gray-900 font-medium text-center px-6 py-2 whitespace-nowrap">
+                        {user?.verified ? (
+                          <>
+                            <button className="inline-block px-2 py-2 bg-primaryColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out">
+                              Verified Seller
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <button
+                              onClick={() => handleSellerVerify(user?._id)}
+                              className="inline-block px-2 py-2 bg-baseColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out"
+                            >
+                              Verify Seller
+                            </button>
+                          </>
+                        )}
                       </td>
                       <td className="text-sm  text-gray-900 font-medium text-center px-6 py-2 whitespace-nowrap">
                         {user?.userType === "Seller" && "Seller"}
