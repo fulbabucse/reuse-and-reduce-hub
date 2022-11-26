@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
-import ConfirmModal from "./ConfirmModal";
+import UserDeleteConfirm from "./UserDeleteConfirm";
 
 const Sellers = () => {
   const [modalData, setModalData] = useState({});
@@ -135,10 +135,10 @@ const Sellers = () => {
           </div>
         </div>
       </div>
-      <ConfirmModal
+      <UserDeleteConfirm
         modalData={modalData}
         handleDeleteMyUser={handleDeleteMyUser}
-      ></ConfirmModal>
+      ></UserDeleteConfirm>
     </div>
   );
 };

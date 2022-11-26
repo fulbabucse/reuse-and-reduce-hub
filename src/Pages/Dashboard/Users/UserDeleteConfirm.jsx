@@ -1,6 +1,6 @@
 import React from "react";
 
-const ConfirmModal = ({ modalData, handleDeleteMyUser }) => {
+const UserDeleteConfirm = ({ modalData, handleDeleteMyUser }) => {
   const { name, _id } = modalData;
   return (
     <div>
@@ -62,4 +62,4 @@ const ConfirmModal = ({ modalData, handleDeleteMyUser }) => {
   );
 };
 
-export default ConfirmModal;
+export default UserDeleteConfirm;

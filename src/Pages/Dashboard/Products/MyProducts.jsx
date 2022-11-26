@@ -51,8 +51,8 @@ const MyProducts = () => {
       });
   };
 
-  const handleDeleteMyProduct = (id) => {
-    fetch(`http://localhost:5000/my-products/${id}`, {
+  const handleDeleteProduct = (id) => {
+    fetch(`http://localhost:5000/products/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -199,7 +199,7 @@ const MyProducts = () => {
       </div>
       <ConfirmModal
         modalData={modalData}
-        handleDeleteMyProduct={handleDeleteMyProduct}
+        handleDeleteProduct={handleDeleteProduct}
       ></ConfirmModal>
     </div>
   );

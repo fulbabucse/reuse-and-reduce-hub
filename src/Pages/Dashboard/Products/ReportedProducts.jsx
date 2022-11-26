@@ -1,10 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
+import toast from "react-hot-toast";
+import ConfirmModal from "../../Shared/ConfirmModal/ConfirmModal";
 import Spinner from "../../Shared/Spinner/Spinner";
 
 const ReportedProducts = () => {
-  const { data: reportedProducts = [], isLoading } = useQuery({
+  const [modalData, setModalData] = useState({});
+  const {
+    data: reportedProducts = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["reported-products"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/reported-products");
@@ -14,7 +21,16 @@ const ReportedProducts = () => {
   });
 
   const handleDeleteReportProduct = (id) => {
-    console.log(id);
+    fetch(`http://localhost:5000/products/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          toast.success("Product delete successfully");
+          refetch();
+        }
+      });
   };
 
   if (isLoading) {
@@ -133,9 +149,9 @@ const ReportedProducts = () => {
                             </td>
                             <td className="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap">
                               <button
-                                onClick={() =>
-                                  handleDeleteReportProduct(product?._id)
-                                }
+                                onClick={() => setModalData(product)}
+                                data-bs-toggle="modal"
+                                data-bs-target="#confirmModal"
                                 className="inline-block px-4 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-500 hover:shadow-lg focus:bg-red-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-500 active:shadow-lg transition duration-150 ease-in-out"
                               >
                                 Remove
@@ -149,6 +165,10 @@ const ReportedProducts = () => {
                 </div>
               </div>
             </div>
+            <ConfirmModal
+              modalData={modalData}
+              handleDeleteProduct={handleDeleteReportProduct}
+            ></ConfirmModal>
           </div>
         </>
       )}

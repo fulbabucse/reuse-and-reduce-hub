@@ -1,6 +1,6 @@
 import React from "react";
 
-const ConfirmModal = ({ modalData, handleDeleteMyProduct }) => {
+const ConfirmModal = ({ modalData, handleDeleteProduct }) => {
   const { model_name, _id } = modalData;
   return (
     <div>
@@ -34,7 +34,7 @@ const ConfirmModal = ({ modalData, handleDeleteMyProduct }) => {
             <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 rounded-b-md">
               <button
                 type="button"
-                onClick={() => handleDeleteMyProduct(_id)}
+                onClick={() => handleDeleteProduct(_id)}
                 className="px-6
           py-2.5
           bg-purple-600
