@@ -4,12 +4,12 @@ import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
 import UserDeleteConfirm from "./UserDeleteConfirm";
 
-const Admin = () => {
+const MakeAdmin = () => {
   const [modalData, setModalData] = useState({});
   const { data: users = [], refetch } = useQuery({
     queryKey: ["admin"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/admin", {
+      const res = await fetch("http://localhost:5000/make-admin", {
         headers: {
           authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
         },
@@ -54,10 +54,10 @@ const Admin = () => {
   return (
     <div className="my-4">
       <Helmet>
-        <title>All Users - Admin Reuse and Reduce</title>
+        <title>Make Admin - Admin Reuse and Reduce</title>
       </Helmet>
       <h1 className="text-center text-xl lg:text-2xl text-gray-700 font-semibold my-3">
-        All Admin
+        Make Admin
       </h1>
       <div className="flex flex-col">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -149,7 +149,9 @@ const Admin = () => {
                         )}
                       </td>
                       <td className="text-sm  text-gray-900 font-medium text-center px-6 py-2 whitespace-nowrap">
-                        {user?.role === "admin" && "Admin"}
+                        {(user?.role === "admin" && "Admin") ||
+                          (user?.userType === "Seller" && "Seller") ||
+                          (user?.userType === "Buyer" && "Buyer")}
                       </td>
                     </tr>
                   ))}
@@ -167,4 +169,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default MakeAdmin;

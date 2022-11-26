@@ -24,6 +24,8 @@ const MyOrders = () => {
     },
   });
 
+  console.log(bookings);
+
   if (isLoading) {
     return <Spinner></Spinner>;
   }
@@ -137,7 +139,7 @@ const MyOrders = () => {
                               />
                             </td>
                             <td className="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap">
-                              {!booking?.paymentStatus && (
+                              {!booking?.paymentStatus && !booking?.sold && (
                                 <Link
                                   to={`/dashboard/payments/${booking?._id}`}
                                 >
@@ -150,11 +152,16 @@ const MyOrders = () => {
                                 </Link>
                               )}
 
-                              {booking?.paymentStatus === true && (
+                              {(booking?.paymentStatus && (
                                 <h4 className="text-md font-semibold text-primaryColor">
                                   Paid
                                 </h4>
-                              )}
+                              )) ||
+                                (booking?.sold && (
+                                  <h4 className="text-md font-semibold text-primaryColor">
+                                    Sold Out
+                                  </h4>
+                                ))}
                             </td>
                           </tr>
                         ))}

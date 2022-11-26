@@ -179,7 +179,7 @@ const Navbar = () => {
                           >
                             <li>
                               <Link
-                                to="/dashboard/admin"
+                                to="/dashboard/make-admin"
                                 className="
               dropdown-item
               text-sm
@@ -194,7 +194,7 @@ const Navbar = () => {
               hover:bg-gray-100
             "
                               >
-                                Admin
+                                Make Admin
                               </Link>
                             </li>
                             <li>

@@ -29,6 +29,8 @@ const CheckoutForm = ({ bookingData }) => {
     seller_email,
   } = bookingData;
 
+  console.log(bookingData);
+
   useEffect(() => {
     fetch("http://localhost:5000/create-payment-intent", {
       method: "POST",
@@ -126,7 +128,21 @@ const CheckoutForm = ({ bookingData }) => {
               },
             })
               .then((res) => res.json())
-              .then((data) => {
+              .then(() => {
+                fetch(`http://localhost:5000/bookings/${bookingId}`, {
+                  method: "PATCH",
+                  headers: {
+                    authorization: `Bearer ${localStorage.getItem(
+                      "reuseReduceToken"
+                    )}`,
+                  },
+                })
+                  .then((res) => res.json())
+                  .then((data) => {
+                    console.log(data);
+                    navigate("/dashboard/my-orders");
+                  })
+                  .catch((err) => console.error(err));
                 navigate("/dashboard/my-orders");
               })
               .catch((err) => console.error(err));

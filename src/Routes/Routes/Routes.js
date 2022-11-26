@@ -22,7 +22,7 @@ import Payments from "../../Pages/Dashboard/Payments/Payments";
 import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
 import ReportedProducts from "../../Pages/Dashboard/Products/ReportedProducts";
 import Buyers from "../../Pages/Dashboard/Users/Buyers";
-import Admin from "../../Pages/Dashboard/Users/Admin";
+import MakeAdmin from "../../Pages/Dashboard/Users/MakeAdmin";
 
 export const router = createBrowserRouter([
   {
@@ -70,10 +70,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/admin",
+        path: "/dashboard/make-admin",
         element: (
           <AdminRoute>
-            <Admin></Admin>
+            <MakeAdmin></MakeAdmin>
           </AdminRoute>
         ),
       },
