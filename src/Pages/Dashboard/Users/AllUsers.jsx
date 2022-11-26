@@ -4,12 +4,12 @@ import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
 import ConfirmModal from "./ConfirmModal";
 
-const Users = () => {
+const AllUsers = () => {
   const [modalData, setModalData] = useState({});
   const { data: users = [], refetch } = useQuery({
-    queryKey: ["sellers"],
+    queryKey: ["buyers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/sellers", {
+      const res = await fetch("http://localhost:5000/buyers", {
         headers: {
           authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
         },
@@ -54,10 +54,10 @@ const Users = () => {
   return (
     <div className="my-4">
       <Helmet>
-        <title>All Sellers - Admin Reuse and Reduce</title>
+        <title>All Users - Admin Reuse and Reduce</title>
       </Helmet>
       <h1 className="text-center text-xl lg:text-2xl text-gray-700 font-semibold my-3">
-        All Sellers
+        All Buyers
       </h1>
       <div className="flex flex-col">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -168,4 +168,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default AllUsers;

@@ -8,6 +8,7 @@ import userThumb from "../../../assets/user_thumbnail.jpg";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import { useAdmin } from "../../../hooks/useAdmin";
 import { useCombineUser } from "../../../hooks/useCombineUser";
+import "../../../assets/styles.css";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
@@ -119,17 +120,112 @@ const Navbar = () => {
                     >
                       Reported Items
                     </Link>
-                    <Link
-                      to="/dashboard/users"
-                      className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-2 hover:text-gray-900 dark:hover:text-gray-200"
-                    >
-                      Users
-                    </Link>
+
+                    <div className="flex justify-center">
+                      <div>
+                        <div className="dropdown relative">
+                          <a
+                            className="dropdown-toggle
+          font-medium
+          leading-tight
+          transition
+          duration-150
+          ease-in-out
+          flex
+          items-center cursor-pointer
+          whitespace-nowrap"
+                            type="button"
+                            id="dropdownMenuButton2"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          >
+                            Users
+                            <svg
+                              aria-hidden="true"
+                              focusable="false"
+                              data-prefix="fas"
+                              data-icon="caret-down"
+                              className="w-2 ml-2"
+                              role="img"
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 320 512"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                              ></path>
+                            </svg>
+                          </a>
+                          <ul
+                            className="user-dropdown
+          dropdown-menu
+          absolute
+          hidden
+          bg-white
+          text-base
+          z-50
+          float-left
+          py-2
+          list-none
+          text-left
+          rounded-lg
+          shadow-lg
+          mt-1
+          m-0
+          bg-clip-padding
+          border-none
+        "
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <Link
+                                to="/dashboard/all-sellers"
+                                className="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              font-medium text-center
+              block
+              w-32
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-100
+            "
+                              >
+                                All Sellers
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                to="/dashboard/all-users"
+                                className="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              font-medium text-center
+              block
+              w-32
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-100
+            "
+                              >
+                                All Users
+                              </Link>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                   </>
                 )}
 
                 <div className="flex justify-center lg:flex lg:mt-0 lg:-mx-2">
-                  <div className="ml-4">
+                  <div className="lg:ml-8">
                     <div className="flex justify-center">
                       <div className="dropdown relative">
                         <button

@@ -21,6 +21,7 @@ import CombineRoute from "../CombineRoute/CombineRoute";
 import Payments from "../../Pages/Dashboard/Payments/Payments";
 import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
 import ReportedProducts from "../../Pages/Dashboard/Products/ReportedProducts";
+import AllUsers from "../../Pages/Dashboard/Users/AllUsers";
 
 export const router = createBrowserRouter([
   {
@@ -68,10 +69,18 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/users",
+        path: "/dashboard/all-sellers",
         element: (
           <AdminRoute>
             <Users></Users>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/all-users",
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
           </AdminRoute>
         ),
       },
