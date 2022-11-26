@@ -20,6 +20,7 @@ import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import CombineRoute from "../CombineRoute/CombineRoute";
 import Payments from "../../Pages/Dashboard/Payments/Payments";
 import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
+import ReportedProducts from "../../Pages/Dashboard/Products/ReportedProducts";
 
 export const router = createBrowserRouter([
   {
@@ -79,6 +80,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AllProducts></AllProducts>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/reported-products",
+        element: (
+          <AdminRoute>
+            <ReportedProducts></ReportedProducts>
           </AdminRoute>
         ),
       },

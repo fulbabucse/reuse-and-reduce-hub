@@ -58,14 +58,14 @@ const Navbar = () => {
               <div className="capitalize space-y-3 md:space-y-0 mt-4 lg:mt-0 lg:space-y-0 flex flex-col transition-all duration-300 ease-in-out  text-gray-600  dark:text-gray-300 lg:flex lg:px-0 lg:flex-row lg:items-center">
                 <Link
                   to="/"
-                  className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
+                  className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-2 hover:text-gray-900 dark:hover:text-gray-200"
                 >
                   Home
                 </Link>
 
                 <Link
                   to="/dashboard/my-orders"
-                  className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
+                  className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-2 hover:text-gray-900 dark:hover:text-gray-200"
                 >
                   My Orders
                 </Link>
@@ -75,24 +75,24 @@ const Navbar = () => {
                     <li className="list-none">
                       <Link
                         to="/dashboard/my-products"
-                        className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
+                        className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-2 hover:text-gray-900 dark:hover:text-gray-200"
                       >
                         My Products
                       </Link>
                     </li>
-                    <li className="list-none lg:mr-5">
+                    <li className="list-none">
                       <Link
                         to="/dashboard/add-product"
-                        className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
+                        className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-2 hover:text-gray-900 dark:hover:text-gray-200"
                       >
                         Add Product
                       </Link>
                     </li>
 
-                    <li className="list-none lg:mr-5">
+                    <li className="list-none">
                       <Link
                         to="/dashboard/my-buyers"
-                        className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
+                        className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-2 hover:text-gray-900 dark:hover:text-gray-200"
                       >
                         My Buyers
                       </Link>
@@ -104,7 +104,7 @@ const Navbar = () => {
                   <li className="list-none">
                     <Link
                       to="/dashboard/all-products"
-                      className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
+                      className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-2 hover:text-gray-900 dark:hover:text-gray-200"
                     >
                       All Products
                     </Link>
@@ -112,16 +112,24 @@ const Navbar = () => {
                 )}
 
                 {isAdmin && (
-                  <Link
-                    to="/dashboard/users"
-                    className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
-                  >
-                    Users
-                  </Link>
+                  <>
+                    <Link
+                      to="/dashboard/reported-products"
+                      className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-2 hover:text-gray-900 dark:hover:text-gray-200"
+                    >
+                      Reported Items
+                    </Link>
+                    <Link
+                      to="/dashboard/users"
+                      className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-2 hover:text-gray-900 dark:hover:text-gray-200"
+                    >
+                      Users
+                    </Link>
+                  </>
                 )}
 
                 <div className="flex justify-center lg:flex lg:mt-0 lg:-mx-2">
-                  <div>
+                  <div className="ml-4">
                     <div className="flex justify-center">
                       <div className="dropdown relative">
                         <button
@@ -131,7 +139,7 @@ const Navbar = () => {
                           aria-expanded="false"
                         >
                           <img
-                            className="h-12 w-12 text-xs rounded-full"
+                            className="h-12 w-12 text-xs rounded-full p-1 ring-2 ring-primaryColor"
                             src={user?.photoURL || userThumb}
                             alt="User Picture"
                           />
