@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import { FaCheckCircle } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product, handleBookingProduct }) => {
   const { user } = useContext(AuthContext);
@@ -85,15 +86,26 @@ const ProductCard = ({ product, handleBookingProduct }) => {
             </p>
             <p>Contact: {contact_number}</p>
             <div className="mt-2 flex justify-between">
-              <button
-                onClick={() => handleBookingProduct(product)}
-                disabled={adminRoleCheck?.role === "admin"}
-                className="inline-block px-6 py-2.5 bg-secondaryColor text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-secondaryColor hover:shadow-lg focus:bg-secondaryColor focus:shadow-lg focus:outline-none focus:ring-0 active:bg-secondaryColor active:shadow-lg transition duration-150 ease-in-out"
-                data-bs-toggle="modal"
-                data-bs-target="#productModal"
-              >
-                Book Now
-              </button>
+              {user?.email ? (
+                <button
+                  onClick={() => handleBookingProduct(product)}
+                  disabled={adminRoleCheck?.role === "admin"}
+                  className="inline-block px-6 py-2.5 bg-secondaryColor text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-secondaryColor hover:shadow-lg focus:bg-secondaryColor focus:shadow-lg focus:outline-none focus:ring-0 active:bg-secondaryColor active:shadow-lg transition duration-150 ease-in-out"
+                  data-bs-toggle="modal"
+                  data-bs-target="#productModal"
+                >
+                  Book Now
+                </button>
+              ) : (
+                <Link to="/sign-in">
+                  <button
+                    disabled={adminRoleCheck?.role === "admin"}
+                    className="inline-block px-6 py-2.5 bg-secondaryColor text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-secondaryColor hover:shadow-lg focus:bg-secondaryColor focus:shadow-lg focus:outline-none focus:ring-0 active:bg-secondaryColor active:shadow-lg transition duration-150 ease-in-out"
+                  >
+                    Book Now
+                  </button>
+                </Link>
+              )}
               <button
                 onClick={() => handleReportProduct(_id)}
                 disabled={adminRoleCheck?.role === "admin"}
