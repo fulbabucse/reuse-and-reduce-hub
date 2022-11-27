@@ -1,26 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../../../Contexts/AuthProvider";
-import Spinner from "../../Shared/Spinner/Spinner";
 
 const MyBuyers = () => {
   const { user } = useContext(AuthContext);
-  const { data: myBuyers = [], isLoading } = useQuery({
-    queryKey: ["my-buyers", user?.email],
-    queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/my-buyers/${user?.email}`);
-      const data = await res.json();
-      return data;
-    },
-  });
+  const [myBuyers, setMyBuyers] = useState([]);
 
-  if (isLoading) {
-    return <Spinner></Spinner>;
-  }
-
-  console.log(myBuyers);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/my-buyers/${user?.email}`)
+      .then((data) => setMyBuyers(data.data))
+      .catch((err) => console.error(err));
+  }, [user?.email]);
 
   return (
     <>
