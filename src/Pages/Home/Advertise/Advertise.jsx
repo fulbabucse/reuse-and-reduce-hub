@@ -19,6 +19,15 @@ const Advertise = () => {
     },
   });
 
+  const { data: advertisement = [] } = useQuery({
+    queryKey: ["advertise"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/advertise");
+      const data = await res.json();
+      return data;
+    },
+  });
+
   const handleBookingProduct = (productInfo) => {
     setProductData(productInfo);
   };
@@ -28,9 +37,7 @@ const Advertise = () => {
   }
 
   return (
-    <div
-      className={`my-4 lg:my-10 ${products[0].advertise === false && "hidden"}`}
-    >
+    <div className={`my-4 lg:my-10 ${advertisement.length === 0 && "hidden"}`}>
       <h1 className="text-center text-xl lg:text-2xl font-semibold text-primaryColor">
         Top Advertise Products
       </h1>

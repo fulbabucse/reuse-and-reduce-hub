@@ -35,8 +35,8 @@ const MyProducts = () => {
     return <Spinner></Spinner>;
   }
 
-  const handleProductAdvertise = (id) => {
-    fetch(`http://localhost:5000/products/${id}`, {
+  const handleProductAdvertise = (product) => {
+    fetch(`http://localhost:5000/products/${product?._id}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
@@ -49,6 +49,17 @@ const MyProducts = () => {
           refetch();
         }
       });
+
+    fetch(`http://localhost:5000/advertise`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {});
   };
 
   const handleDeleteProduct = (id) => {
@@ -178,7 +189,7 @@ const MyProducts = () => {
                               <>
                                 <button
                                   onClick={() =>
-                                    handleProductAdvertise(product?._id)
+                                    handleProductAdvertise(product)
                                   }
                                   className="inline-block px-2 py-2 bg-baseColor text-white font-medium text-sm leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out"
                                 >

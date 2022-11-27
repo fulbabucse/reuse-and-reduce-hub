@@ -27,6 +27,7 @@ const CheckoutForm = ({ bookingData }) => {
     brand_name,
     bookingId,
     seller_email,
+    postedTime,
   } = bookingData;
 
   console.log(bookingData);
@@ -114,11 +115,22 @@ const CheckoutForm = ({ bookingData }) => {
         body: JSON.stringify(paymentInfo),
       })
         .then((res) => res.json())
-        .then((data) => {
-          if (data.acknowledged) {
+        .then((paymentData) => {
+          if (paymentData.acknowledged) {
             setSucceeded("Congrats! Complete your payment");
             setTransectionId(paymentIntent.id);
             SetLoading(false);
+            fetch(`http://localhost:5000/advertise?time=${postedTime}`, {
+              method: "DELETE",
+            })
+              .then((res) => res.json())
+              .then((advertiseDeleteData) => {
+                console.log("console from delete advertise");
+                console.log(advertiseDeleteData);
+                navigate("/dashboard/my-orders");
+              })
+              .catch((err) => console.error(err));
+
             fetch(`http://localhost:5000/products/${bookingId}`, {
               method: "PATCH",
               headers: {
@@ -138,14 +150,12 @@ const CheckoutForm = ({ bookingData }) => {
                   },
                 })
                   .then((res) => res.json())
-                  .then((data) => {
-                    console.log(data);
-                    navigate("/dashboard/my-orders");
-                  })
+                  .then((data) => {})
                   .catch((err) => console.error(err));
                 navigate("/dashboard/my-orders");
               })
               .catch((err) => console.error(err));
+
             toast.success("Congrats! Complete your payment");
           }
         });

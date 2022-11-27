@@ -22,6 +22,7 @@ const BookModal = ({ productData, refetch }) => {
     location,
     seller_name,
     email,
+    postedTime,
   } = productData;
 
   const handleBookingOrder = (bookingData) => {
@@ -40,6 +41,7 @@ const BookModal = ({ productData, refetch }) => {
       sellerContact: contact_number,
       location,
       bookingId: _id,
+      postedTime,
     };
 
     fetch(`http://localhost:5000/bookings`, {

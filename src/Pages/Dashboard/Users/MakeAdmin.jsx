@@ -28,7 +28,6 @@ const MakeAdmin = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount > 0) {
           toast.success("You are Now Admin");
           refetch();
