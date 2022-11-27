@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -8,6 +9,18 @@ import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
+
+  const { data: verifiedUser = [] } = useQuery({
+    queryKey: ["verified-seller", user?.email],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/verified-seller?email=${user?.email}`
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
+
   const {
     register,
     handleSubmit,
@@ -45,6 +58,7 @@ const AddProduct = () => {
           used_time: productData.used_time,
           product_features: productData.product_features,
           product_descriptions: productData.product_descriptions,
+          verified: verifiedUser?.verified ? true : false,
         };
         fetch("http://localhost:5000/products", {
           method: "POST",

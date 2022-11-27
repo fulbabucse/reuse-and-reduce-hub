@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider";
+import { FaCheckCircle } from "react-icons/fa";
 
 const ProductCard = ({ product, handleBookingProduct }) => {
   const { user } = useContext(AuthContext);
@@ -18,6 +19,7 @@ const ProductCard = ({ product, handleBookingProduct }) => {
     seller_name,
     used_time,
     sold,
+    verified,
   } = product;
 
   const handleReportProduct = (id) => {
@@ -62,7 +64,14 @@ const ProductCard = ({ product, handleBookingProduct }) => {
             <p>Resale Price: TK {resalePrice}</p>
             <p>Used Period: {used_time} Months</p>
             <p>Location: {location}</p>
-            <p>Seller: {seller_name}</p>
+            <p className="flex gap-2 items-center">
+              Seller: {seller_name}{" "}
+              {verified && (
+                <span>
+                  <FaCheckCircle className="text-blue-500"></FaCheckCircle>
+                </span>
+              )}
+            </p>
             <p>Contact: {contact_number}</p>
             <div className="mt-2 flex justify-between">
               <button
