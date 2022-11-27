@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
-import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -11,10 +10,10 @@ const AddProduct = () => {
   const { user } = useContext(AuthContext);
 
   const { data: verifiedUser = [] } = useQuery({
-    queryKey: ["verified-seller", user?.email],
+    queryKey: ["users", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/verified-seller?email=${user?.email}`
+        `http://localhost:5000/users?email=${user?.email}`
       );
       const data = await res.json();
       return data;

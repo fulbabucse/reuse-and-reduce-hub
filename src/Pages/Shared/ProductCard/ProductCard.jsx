@@ -3,9 +3,21 @@ import { useContext } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import { FaCheckCircle } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
 
 const ProductCard = ({ product, handleBookingProduct }) => {
   const { user } = useContext(AuthContext);
+  const { data: adminRoleCheck = [] } = useQuery({
+    queryKey: ["users", user?.email],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/users?email=${user?.email}`
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
+
   const {
     _id,
     brand_name,
@@ -36,7 +48,6 @@ const ProductCard = ({ product, handleBookingProduct }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.acknowledged) {
           toast.success("Successfully reported this product");
         }
@@ -76,6 +87,7 @@ const ProductCard = ({ product, handleBookingProduct }) => {
             <div className="mt-2 flex justify-between">
               <button
                 onClick={() => handleBookingProduct(product)}
+                disabled={adminRoleCheck?.role === "admin"}
                 className="inline-block px-6 py-2.5 bg-secondaryColor text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-secondaryColor hover:shadow-lg focus:bg-secondaryColor focus:shadow-lg focus:outline-none focus:ring-0 active:bg-secondaryColor active:shadow-lg transition duration-150 ease-in-out"
                 data-bs-toggle="modal"
                 data-bs-target="#productModal"

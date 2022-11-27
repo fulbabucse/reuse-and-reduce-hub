@@ -9,10 +9,22 @@ import { AuthContext } from "../../../Contexts/AuthProvider";
 import { useAdmin } from "../../../hooks/useAdmin";
 import { useCombineUser } from "../../../hooks/useCombineUser";
 import "../../../assets/styles.css";
+import { useQuery } from "@tanstack/react-query";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const { user, userSignOut } = useContext(AuthContext);
+
+  const { data: adminRoleCheck = [] } = useQuery({
+    queryKey: ["users", user?.email],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/users?email=${user?.email}`
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
 
   const [isAdmin] = useAdmin(user?.email);
   const [isCombineUser] = useCombineUser(user?.email);
@@ -66,7 +78,9 @@ const Navbar = () => {
 
                 <Link
                   to="/dashboard/my-orders"
-                  className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-2 hover:text-gray-900 dark:hover:text-gray-200"
+                  className={`${
+                    adminRoleCheck?.role === "admin" && "hidden"
+                  } transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-2 hover:text-gray-900 dark:hover:text-gray-200`}
                 >
                   My Orders
                 </Link>
