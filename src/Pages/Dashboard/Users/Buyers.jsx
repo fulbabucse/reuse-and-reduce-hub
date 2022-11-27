@@ -22,6 +22,9 @@ const Buyers = () => {
   const handleDeleteMyUser = (id) => {
     fetch(`http://localhost:5000/users/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {

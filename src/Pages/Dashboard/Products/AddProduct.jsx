@@ -13,7 +13,12 @@ const AddProduct = () => {
     queryKey: ["users", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/users?email=${user?.email}`
+        `http://localhost:5000/users?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
+          },
+        }
       );
       const data = await res.json();
       return data;
@@ -82,7 +87,11 @@ const AddProduct = () => {
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/categories");
+      const res = await fetch("http://localhost:5000/categories", {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
+        },
+      });
       const data = await res.json();
       return data;
     },

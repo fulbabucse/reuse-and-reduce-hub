@@ -12,7 +12,11 @@ const MyBuyers = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/my-buyers/${user?.email}`)
+      .get(`http://localhost:5000/my-buyers/${user?.email}`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
+        },
+      })
       .then((data) => setMyBuyers(data.data))
       .catch((err) => console.error(err));
   }, [user?.email]);
