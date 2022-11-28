@@ -89,7 +89,10 @@ const ProductCard = ({ product, handleBookingProduct }) => {
               {user?.email ? (
                 <button
                   onClick={() => handleBookingProduct(product)}
-                  disabled={adminRoleCheck?.role === "admin"}
+                  disabled={
+                    adminRoleCheck?.role === "admin" ||
+                    user?.displayName === seller_name
+                  }
                   className="inline-block px-6 py-2.5 bg-secondaryColor text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-secondaryColor hover:shadow-lg focus:bg-secondaryColor focus:shadow-lg focus:outline-none focus:ring-0 active:bg-secondaryColor active:shadow-lg transition duration-150 ease-in-out"
                   data-bs-toggle="modal"
                   data-bs-target="#productModal"

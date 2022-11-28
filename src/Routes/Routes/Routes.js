@@ -94,14 +94,6 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/all-products",
-        element: (
-          <AdminRoute>
-            <AllProducts></AllProducts>
-          </AdminRoute>
-        ),
-      },
-      {
         path: "/dashboard/reported-products",
         element: (
           <AdminRoute>

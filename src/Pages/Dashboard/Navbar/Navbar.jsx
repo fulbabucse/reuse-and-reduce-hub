@@ -13,6 +13,8 @@ import { useQuery } from "@tanstack/react-query";
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const { user, userSignOut } = useContext(AuthContext);
+  const [isAdmin] = useAdmin(user?.email);
+  const [isCombineUser] = useCombineUser(user?.email);
 
   const { data: adminRoleCheck = [] } = useQuery({
     queryKey: ["users", user?.email],
@@ -24,9 +26,6 @@ const Navbar = () => {
       return data;
     },
   });
-
-  const [isAdmin] = useAdmin(user?.email);
-  const [isCombineUser] = useCombineUser(user?.email);
 
   const handleUserSignOut = () => {
     userSignOut()
@@ -111,17 +110,6 @@ const Navbar = () => {
                       </Link>
                     </li>
                   </>
-                )}
-
-                {isAdmin && (
-                  <li className="list-none">
-                    <Link
-                      to="/dashboard/all-products"
-                      className="transition-colors font-medium duration-300 transform lg:mt-0 lg:mx-2 hover:text-gray-900 dark:hover:text-gray-200"
-                    >
-                      All Products
-                    </Link>
-                  </li>
                 )}
 
                 {isAdmin && (
