@@ -24,7 +24,7 @@ const ForgetPassword = () => {
       .catch((err) => console.error(err));
   };
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 my-6 lg:my-16 items-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 my-6 lg:my-16 items-center mx-4 lg:mx-0">
       <Helmet>
         <title>Forget Password - Reuse & Reduce Hub</title>
       </Helmet>

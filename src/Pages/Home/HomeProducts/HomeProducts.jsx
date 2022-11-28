@@ -46,7 +46,7 @@ const HomeProducts = () => {
   }
 
   return (
-    <div>
+    <div className="mx-4 lg:mx-0">
       <Helmet>
         <title>Category - Reuse and Reduce</title>
       </Helmet>

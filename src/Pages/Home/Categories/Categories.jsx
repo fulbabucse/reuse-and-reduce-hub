@@ -27,7 +27,7 @@ const Categories = () => {
       <p className="text-center text-lg text-baseColor font-medium">
         Reuse & Reduce Hub are the best websites to sale your old Mobile Phones
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-4 mx-4 lg:mx-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-4">
         {categories?.map((category) => (
           <CategoryCard key={category?._id} category={category}></CategoryCard>
         ))}

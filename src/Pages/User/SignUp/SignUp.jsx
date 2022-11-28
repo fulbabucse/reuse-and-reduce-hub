@@ -103,7 +103,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="my-6 lg:my-16">
+    <div className="my-6 lg:my-16 mx-4 lg:mx-0">
       <Helmet>
         <title>Sign Up - Reuse and Reduce</title>
       </Helmet>
