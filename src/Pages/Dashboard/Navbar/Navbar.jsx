@@ -264,17 +264,6 @@ const Navbar = () => {
                           className=" dropdown-menu px-2 min-w-max absolute hidden bg-white text-base z-50 space-y-2 py-2 list-none text-left rounded-md shadow-2xl mt-1 m-0 bg-clip-padding border-none"
                           aria-labelledby="dropdownMenuButton1"
                         >
-                          {user?.email && (
-                            <li>
-                              <Link
-                                to="/profile"
-                                className="dropdown-item text-center rounded-md text-md py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                              >
-                                {user?.displayName || "User Profile"}
-                              </Link>
-                            </li>
-                          )}
-
                           {!user?.email && (
                             <li>
                               <Link
