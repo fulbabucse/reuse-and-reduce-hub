@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import forgetImg from "../../../assets/icons/forget-password.gif";
-import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const ForgetPassword = () => {
   const { passwordReset } = useContext(AuthContext);
@@ -26,7 +26,7 @@ const ForgetPassword = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 my-6 lg:my-16 items-center">
       <Helmet>
-        <title>Forget Password - Doctors Portal</title>
+        <title>Forget Password - Reuse & Reduce Hub</title>
       </Helmet>
       <div>
         <img src={forgetImg} alt="Forget Password" />
@@ -60,8 +60,6 @@ const ForgetPassword = () => {
           </div>
           <button
             type="submit"
-            data-mdb-ripple="true"
-            data-mdb-ripple-color="light"
             className="inline-block px-4 py-3 bg-gradient-to-r from-primaryColor to-secondaryColor text-white font-medium text-lg leading-tight rounded-md shadow-md  hover:shadow-2xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition-colors duration-200 ease-in-out"
           >
             Forget Password

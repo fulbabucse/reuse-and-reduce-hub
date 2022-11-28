@@ -23,6 +23,7 @@ import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
 import ReportedProducts from "../../Pages/Dashboard/Products/ReportedProducts";
 import Buyers from "../../Pages/Dashboard/Users/Buyers";
 import MakeAdmin from "../../Pages/Dashboard/Users/MakeAdmin";
+import ForgetPassword from "../../Pages/User/ForgetPassword/ForgetPassword";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,7 @@ export const router = createBrowserRouter([
       { path: "contact", element: <Contact></Contact> },
       { path: "sign-up", element: <SignUp></SignUp> },
       { path: "sign-in", element: <SignIn></SignIn> },
+      { path: "forget-password", element: <ForgetPassword></ForgetPassword> },
       {
         path: "/category/:id",
         loader: ({ params }) =>
