@@ -7,7 +7,7 @@ export const useCombineUser = (email) => {
 
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/users/${email}`, {
+      fetch(`https://reuse-and-reduce-server.vercel.app/users/${email}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
         },

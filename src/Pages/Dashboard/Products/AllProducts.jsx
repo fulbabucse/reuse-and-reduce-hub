@@ -7,11 +7,14 @@ const AllProducts = () => {
   const { data: products = [], isLoading } = useQuery({
     queryKey: ["all-products"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/all-products`, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
-        },
-      });
+      const res = await fetch(
+        `https://reuse-and-reduce-server.vercel.app/all-products`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
+          },
+        }
+      );
       const data = res.json();
       return data;
     },

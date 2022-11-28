@@ -12,7 +12,7 @@ const ProductCard = ({ product, handleBookingProduct }) => {
     queryKey: ["users", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/users?email=${user?.email}`
+        `https://reuse-and-reduce-server.vercel.app/users?email=${user?.email}`
       );
       const data = await res.json();
       return data;
@@ -41,7 +41,7 @@ const ProductCard = ({ product, handleBookingProduct }) => {
       return;
     }
 
-    fetch(`http://localhost:5000/products/report/${id}`, {
+    fetch(`https://reuse-and-reduce-server.vercel.app/products/report/${id}`, {
       method: "PATCH",
       headers: {
         authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,

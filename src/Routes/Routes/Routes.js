@@ -45,7 +45,9 @@ export const router = createBrowserRouter([
       {
         path: "/category/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/categories/${params.id}`),
+          fetch(
+            `https://reuse-and-reduce-server.vercel.app/categories/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <HomeProducts></HomeProducts>
@@ -138,7 +140,9 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/payments/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookings/${params.id}`),
+          fetch(
+            `https://reuse-and-reduce-server.vercel.app/bookings/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <Payments></Payments>

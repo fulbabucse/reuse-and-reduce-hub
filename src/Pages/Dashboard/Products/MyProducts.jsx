@@ -19,7 +19,7 @@ const MyProducts = () => {
     queryKey: ["my-products", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/my-products?email=${user?.email}`,
+        `https://reuse-and-reduce-server.vercel.app/my-products?email=${user?.email}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
@@ -36,12 +36,15 @@ const MyProducts = () => {
   }
 
   const handleProductAdvertise = (product) => {
-    fetch(`http://localhost:5000/products/${product?._id}`, {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
-      },
-    })
+    fetch(
+      `https://reuse-and-reduce-server.vercel.app/products/${product?._id}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
@@ -50,7 +53,7 @@ const MyProducts = () => {
         }
       });
 
-    fetch(`http://localhost:5000/advertise`, {
+    fetch(`https://reuse-and-reduce-server.vercel.app/advertise`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -63,7 +66,7 @@ const MyProducts = () => {
   };
 
   const handleDeleteProduct = (id) => {
-    fetch(`http://localhost:5000/products/${id}`, {
+    fetch(`https://reuse-and-reduce-server.vercel.app/products/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,

@@ -59,7 +59,7 @@ const SignIn = () => {
       email,
       userType,
     };
-    fetch(`http://localhost:5000/users/${email}`, {
+    fetch(`https://reuse-and-reduce-server.vercel.app/users/${email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

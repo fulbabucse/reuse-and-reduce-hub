@@ -33,7 +33,7 @@ const CheckoutForm = ({ bookingData }) => {
   console.log(bookingData);
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://reuse-and-reduce-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -106,7 +106,7 @@ const CheckoutForm = ({ bookingData }) => {
         paymentMethod,
         seller_email,
       };
-      fetch("http://localhost:5000/payments", {
+      fetch("https://reuse-and-reduce-server.vercel.app/payments", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -120,9 +120,12 @@ const CheckoutForm = ({ bookingData }) => {
             setSucceeded("Congrats! Complete your payment");
             setTransectionId(paymentIntent.id);
             SetLoading(false);
-            fetch(`http://localhost:5000/advertise?time=${postedTime}`, {
-              method: "DELETE",
-            })
+            fetch(
+              `https://reuse-and-reduce-server.vercel.app/advertise?time=${postedTime}`,
+              {
+                method: "DELETE",
+              }
+            )
               .then((res) => res.json())
               .then((advertiseDeleteData) => {
                 console.log("console from delete advertise");
@@ -131,24 +134,30 @@ const CheckoutForm = ({ bookingData }) => {
               })
               .catch((err) => console.error(err));
 
-            fetch(`http://localhost:5000/products/${bookingId}`, {
-              method: "PATCH",
-              headers: {
-                authorization: `Bearer ${localStorage.getItem(
-                  "reuseReduceToken"
-                )}`,
-              },
-            })
+            fetch(
+              `https://reuse-and-reduce-server.vercel.app/products/${bookingId}`,
+              {
+                method: "PATCH",
+                headers: {
+                  authorization: `Bearer ${localStorage.getItem(
+                    "reuseReduceToken"
+                  )}`,
+                },
+              }
+            )
               .then((res) => res.json())
               .then(() => {
-                fetch(`http://localhost:5000/bookings/${bookingId}`, {
-                  method: "PATCH",
-                  headers: {
-                    authorization: `Bearer ${localStorage.getItem(
-                      "reuseReduceToken"
-                    )}`,
-                  },
-                })
+                fetch(
+                  `https://reuse-and-reduce-server.vercel.app/bookings/${bookingId}`,
+                  {
+                    method: "PATCH",
+                    headers: {
+                      authorization: `Bearer ${localStorage.getItem(
+                        "reuseReduceToken"
+                      )}`,
+                    },
+                  }
+                )
                   .then((res) => res.json())
                   .then((data) => {})
                   .catch((err) => console.error(err));

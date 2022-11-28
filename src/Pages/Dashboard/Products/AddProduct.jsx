@@ -13,7 +13,7 @@ const AddProduct = () => {
     queryKey: ["users", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/users?email=${user?.email}`,
+        `https://reuse-and-reduce-server.vercel.app/users?email=${user?.email}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
@@ -64,7 +64,7 @@ const AddProduct = () => {
           product_descriptions: productData.product_descriptions,
           verified: verifiedUser?.verified ? true : false,
         };
-        fetch("http://localhost:5000/products", {
+        fetch("https://reuse-and-reduce-server.vercel.app/products", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -87,11 +87,14 @@ const AddProduct = () => {
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/categories", {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
-        },
-      });
+      const res = await fetch(
+        "https://reuse-and-reduce-server.vercel.app/categories",
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
+          },
+        }
+      );
       const data = await res.json();
       return data;
     },

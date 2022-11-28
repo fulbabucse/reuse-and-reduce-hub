@@ -23,7 +23,7 @@ const HomeProducts = () => {
     queryKey: ["products"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/products?category=${category?.category_name}`
+        `https://reuse-and-reduce-server.vercel.app/products?category=${category?.category_name}`
       );
       const data = await res.json();
       return data;

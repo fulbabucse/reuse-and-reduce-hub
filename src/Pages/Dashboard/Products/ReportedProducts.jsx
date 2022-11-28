@@ -14,18 +14,21 @@ const ReportedProducts = () => {
   } = useQuery({
     queryKey: ["reported-products"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/reported-products", {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
-        },
-      });
+      const res = await fetch(
+        "https://reuse-and-reduce-server.vercel.app/reported-products",
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
+          },
+        }
+      );
       const data = await res.json();
       return data;
     },
   });
 
   const handleDeleteReportProduct = (id) => {
-    fetch(`http://localhost:5000/products/${id}`, {
+    fetch(`https://reuse-and-reduce-server.vercel.app/products/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,

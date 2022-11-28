@@ -12,7 +12,7 @@ const MyOrders = () => {
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/bookings?email=${user?.email}`,
+        `https://reuse-and-reduce-server.vercel.app/bookings?email=${user?.email}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
@@ -23,7 +23,6 @@ const MyOrders = () => {
       return data;
     },
   });
-
 
   if (isLoading) {
     return <Spinner></Spinner>;

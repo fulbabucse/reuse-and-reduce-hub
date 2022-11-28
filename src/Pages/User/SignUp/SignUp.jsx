@@ -86,7 +86,7 @@ const SignUp = () => {
       email,
       userType,
     };
-    fetch(`http://localhost:5000/users`, {
+    fetch(`https://reuse-and-reduce-server.vercel.app/users`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

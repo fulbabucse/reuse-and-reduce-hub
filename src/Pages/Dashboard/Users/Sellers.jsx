@@ -14,18 +14,21 @@ const Sellers = () => {
   } = useQuery({
     queryKey: ["sellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/sellers", {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
-        },
-      });
+      const res = await fetch(
+        "https://reuse-and-reduce-server.vercel.app/sellers",
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
+          },
+        }
+      );
       const data = await res.json();
       return data;
     },
   });
 
   const handleDeleteMyUser = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://reuse-and-reduce-server.vercel.app/users/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
@@ -41,12 +44,15 @@ const Sellers = () => {
   };
 
   const handleSellerVerify = (email) => {
-    fetch(`http://localhost:5000/verify-seller?email=${email}`, {
-      method: "PATCH",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
-      },
-    })
+    fetch(
+      `https://reuse-and-reduce-server.vercel.app/verify-seller?email=${email}`,
+      {
+        method: "PATCH",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("reuseReduceToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
