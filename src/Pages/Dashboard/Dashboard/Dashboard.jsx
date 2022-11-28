@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import { useAdmin } from "../../../hooks/useAdmin";
 import Home from "../Home/Home";
+import Profile from "../Profile/Profile";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -13,9 +14,7 @@ const Dashboard = () => {
       <Helmet>
         <title>{user?.displayName} Dashboard - Reuse and Reduce</title>
       </Helmet>
-      <div>
-        <h1>Admin</h1>
-      </div>
+      <div>{!isAdmin && <Profile></Profile>}</div>
       {isAdmin && <Home></Home>}
     </div>
   );

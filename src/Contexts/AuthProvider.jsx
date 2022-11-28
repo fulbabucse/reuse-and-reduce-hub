@@ -12,6 +12,7 @@ import {
   sendPasswordResetEmail,
   sendEmailVerification,
   deleteUser,
+  updatePassword,
 } from "firebase/auth";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -62,6 +63,10 @@ const AuthProvider = ({ children }) => {
     return sendEmailVerification(auth.currentUser);
   };
 
+  const userPasswordUpdate = (newPassword) => {
+    return updatePassword(auth.currentUser, newPassword);
+  };
+
   const deleteUserAccount = () => {
     setLoading(true);
     localStorage.removeItem("reuseReduceToken");
@@ -86,6 +91,7 @@ const AuthProvider = ({ children }) => {
     emailVerify,
     googleSignIn,
     passwordReset,
+    userPasswordUpdate,
     updateUserProfile,
     deleteUserAccount,
   };
