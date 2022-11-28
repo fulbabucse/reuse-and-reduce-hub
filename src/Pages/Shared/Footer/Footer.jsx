@@ -82,7 +82,7 @@ const Footer = () => {
           <label className="text-xl font-medium leading-5 text-gray-800">
             Get updates
           </label>
-          <div className="cursor-pointer flex items-center justify-between border border-gray-800 mt-4">
+          <div className="cursor-pointer flex items-center justify-between border border-primaryColor mt-4">
             <input
               type="text"
               className="text-base leading-4 p-4 w-full focus:outline-none text-gray-800 placeholder-gray-800"
