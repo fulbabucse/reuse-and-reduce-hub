@@ -37,15 +37,19 @@ const Advertise = () => {
   }
 
   return (
-    <div className={`my-4 lg:my-10 ${advertisement.length === 0 && "hidden"}`}>
-      <h1 className="text-center text-xl lg:text-2xl font-semibold text-primaryColor">
+    <div
+      className={`my-4 lg:my-20 ${
+        advertisement.length === 0 && "hidden"
+      } mx-4 lg:mx-0`}
+    >
+      <h1 className="text-center text-xl lg:text-3xl font-semibold text-primaryColor uppercase secondary-font tracking-wider">
         Top Advertise Products
       </h1>
-      <p className="text-center text-gray-600 font-semibold">
-        Reuse & Reduce are the best websites to sale your old Mobile Phones
+      <p className="text-center text-baseColor text-lg font-medium">
+        Reuse & Reduce Hub are the best websites to sale your old Mobile Phones
       </p>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-4 px-4 lg:px-0">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-4 lg:px-0">
         {products?.map((product) => (
           <ProductCard
             key={product?._id}

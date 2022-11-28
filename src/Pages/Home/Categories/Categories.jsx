@@ -18,12 +18,12 @@ const Categories = () => {
   }
 
   return (
-    <div className="my-4 lg:my-10">
-      <h1 className="text-center text-xl lg:text-2xl font-semibold text-primaryColor">
-        Products
+    <div className="my-4 lg:my-20 mx-4 lg:mx-0">
+      <h1 className="text-center text-xl lg:text-3xl font-semibold text-primaryColor uppercase secondary-font tracking-wider">
+        Our Categories
       </h1>
-      <p className="text-center text-gray-600 font-semibold">
-        Reuse & Reduce are the best websites to sale your old Mobile Phones
+      <p className="text-center text-lg text-baseColor font-medium">
+        Reuse & Reduce Hub are the best websites to sale your old Mobile Phones
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-4 mx-4 lg:mx-0">
         {categories?.map((category) => (

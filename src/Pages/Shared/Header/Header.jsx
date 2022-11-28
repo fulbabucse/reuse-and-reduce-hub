@@ -25,8 +25,8 @@ const Header = () => {
             <div className="flex items-center justify-between">
               <div>
                 <Link to="/">
-                  <h1 className="text-xl lg:text-3xl font-bold text-gray-800">
-                    Reuse & Reduce
+                  <h1 className="text-xl lg:text-3xl font-bold text-baseColor uppercase secondary-font tracking-wider">
+                    Reuse & Reduce Hub
                   </h1>
                 </Link>
               </div>

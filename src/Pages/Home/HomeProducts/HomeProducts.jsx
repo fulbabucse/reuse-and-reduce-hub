@@ -50,7 +50,7 @@ const HomeProducts = () => {
       <Helmet>
         <title>Category - Reuse and Reduce</title>
       </Helmet>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-4 lg:my-10 px-4 lg:px-0">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-4 lg:my-10 lg:px-0">
         {products?.map((product) => (
           <ProductCard
             key={product?._id}

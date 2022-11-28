@@ -22,3 +22,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.secondary-font {
+  font-family: "Bebas Neue", cursive;
+}
+
+.ternary-font {
+  font-family: "Poppins", sans-serif;
+}
