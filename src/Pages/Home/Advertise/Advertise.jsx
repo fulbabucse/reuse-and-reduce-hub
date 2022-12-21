@@ -49,9 +49,6 @@ const Advertise = () => {
       <h1 className="text-center text-xl lg:text-3xl font-semibold text-primaryColor uppercase secondary-font tracking-wider">
         Top Advertise Products
       </h1>
-      <p className="text-center text-baseColor text-lg font-medium">
-        Reuse & Reduce Hub are the best websites to sale your old Mobile Phones
-      </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-4 lg:px-0">
         {products?.map((product) => (
